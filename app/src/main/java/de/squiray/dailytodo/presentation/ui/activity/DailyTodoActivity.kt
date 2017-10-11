@@ -3,13 +3,19 @@ package de.squiray.dailytodo.presentation.ui.activity
 import android.support.design.widget.BottomNavigationView
 import de.squiray.dailytodo.R
 import de.squiray.dailytodo.domain.entity.TodoType
+import de.squiray.dailytodo.presentation.presenter.DailyTodoPresenter
 import de.squiray.dailytodo.presentation.ui.fragment.DailyTodoFragment
+import de.squiray.dailytodo.presentation.ui.view.DailyTodoView
 import de.squiray.dailytodo.util.annotation.Activity
-import kotlinx.android.synthetic.main.layout_toolbar.*
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
+import javax.inject.Inject
 
 @Activity(layout = R.layout.activity_daily_todo)
-class DailyTodoActivity : BaseActivity() {
+class DailyTodoActivity : BaseActivity(), DailyTodoView {
+
+    @Inject
+    lateinit var dailyTodoPresenter: DailyTodoPresenter
 
     override fun setupView() {
         setupToolbar()

@@ -16,9 +16,10 @@ public class LocalTodoRepositoryImpl implements TodoRepository {
     private final TodoEntityMapper todoEntityMapper;
 
     @Inject
-    public LocalTodoRepositoryImpl(TodoDao todoDao,
-                                   TodoEntityMapper todoEntityMapper) {
-        this.todoDao = todoDao;
+    public LocalTodoRepositoryImpl(
+            // TODO cannot be injected without providesTodoDao todoDao,
+            TodoEntityMapper todoEntityMapper) {
+        this.todoDao = null;
         this.todoEntityMapper = todoEntityMapper;
     }
 

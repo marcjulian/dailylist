@@ -12,6 +12,8 @@ import de.squiray.dailytodo.util.thread.UIThread;
 @Module
 public class ThreadModule {
 
+    // TODO de.squiray.dailytodo.presentation.di.component.AppComponent (unscoped) may not reference scoped bindings:
+    // TODO maybe need to scope appcomponent
     @Provides
     @Singleton
     ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {

@@ -56,6 +56,6 @@ abstract class UseCase<T> constructor(private val postExecutionThread: PostExecu
         }
     }
 
-    abstract fun execute(): T
+    protected abstract fun execute(): T
 
 }

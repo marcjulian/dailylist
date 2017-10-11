@@ -13,8 +13,8 @@ class AddTodoUseCase @Inject constructor(postExecThread: PostExecutionThread,
                                          private val todoRepository: TodoRepository) :
         UseCase<Todo>(postExecThread, threadExec) {
 
-    private lateinit var todo: String
-    private lateinit var type: TodoType
+    lateinit var todo: String
+    lateinit var type: TodoType
 
     override fun execute(): Todo {
         return todoRepository.save(Todo(todo = todo, todoType = type))

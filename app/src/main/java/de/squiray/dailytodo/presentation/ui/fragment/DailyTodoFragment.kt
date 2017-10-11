@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.View
 import de.squiray.dailytodo.R
 import de.squiray.dailytodo.domain.entity.TodoType
+import de.squiray.dailytodo.presentation.presenter.DailyTodoPresenter
 import de.squiray.dailytodo.util.annotation.Fragment
 import kotlinx.android.synthetic.main.fragment_daily_todo.*
+import javax.inject.Inject
 
 @Fragment(layout = R.layout.fragment_daily_todo)
 class DailyTodoFragment : BaseFragment() {
+
+    @Inject
+    lateinit var dailyTodoPresenter: DailyTodoPresenter
 
     private val todoType: TodoType
         get() = arguments.getSerializable(ARG_TODO_TYPE) as TodoType

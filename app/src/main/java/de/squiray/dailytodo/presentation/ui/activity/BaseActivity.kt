@@ -1,25 +1,39 @@
 package de.squiray.dailytodo.presentation.ui.activity
 
 import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasFragmentInjector
 import de.squiray.dailytodo.R
+import de.squiray.dailytodo.presentation.ui.view.View
 import de.squiray.dailytodo.util.annotation.Activity
 import javax.inject.Inject
+import de.squiray.dailytodo.presentation.presenter.Presenter
 
-abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector {
+
+
+abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
+
+    private val ACTIVE_DIALOG = "activeDialog"
 
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+
+    private var currentDialog: DialogFragment? = null
+
+    private var presenter: Presenter<*>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(contentLayout())
+
+        presenter = Activities.initializePresenter(this)
 
         setupView()
     }
@@ -45,5 +59,42 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector {
 
     open fun setupView() {
 
+    }
+
+    override fun context(): Context {
+        return this
+    }
+
+    override fun showError(messageId: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showMessage(messageId: Int, vararg args: Any) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showError(message: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun activity(): android.app.Activity {
+        return this
+    }
+
+    override fun showMessage(message: String, vararg args: Any) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showDialog(dialog: DialogFragment) {
+        closeDialog()
+        currentDialog = dialog
+        dialog.show(supportFragmentManager, ACTIVE_DIALOG)
+    }
+
+    override fun closeDialog() {
+        if (currentDialog != null) {
+            currentDialog!!.dismissAllowingStateLoss()
+            currentDialog = null
+        }
     }
 }
