@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">DailyTodo</string>
-    <string name="title_daily_todo">Daily Todo</string>
-    <string name="title_not_todo">Not Todo</string>
-    <string name="title_todo">Todo</string>
+    <string name="app_name">DoIt</string>
+
+    <string name="nav_title_daily_todo">Daily Todo</string>
+    <string name="nav_title_fear">Fear</string>
+    <string name="nav_title_passion">Passion</string>
 </resources>

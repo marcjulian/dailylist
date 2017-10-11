@@ -6,6 +6,7 @@ import de.squiray.dailytodo.domain.entity.TodoType
 import de.squiray.dailytodo.presentation.ui.fragment.DailyTodoFragment
 import de.squiray.dailytodo.util.annotation.Activity
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import kotlinx.android.synthetic.main.layout_bottom_nav.*
 
 @Activity(layout = R.layout.activity_daily_todo)
 class DailyTodoActivity : BaseActivity() {
@@ -13,7 +14,7 @@ class DailyTodoActivity : BaseActivity() {
     override fun setupView() {
         setupToolbar()
         showDailyTodoFragmentFor(TodoType.DAILY_TO_DO)
-        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
     private fun setupToolbar() {
@@ -21,7 +22,7 @@ class DailyTodoActivity : BaseActivity() {
     }
 
     private fun showDailyTodoFragmentFor(todoType: TodoType) {
-        addFragment(R.id.fragmentContainer, DailyTodoFragment.newInstance(todoType))
+        replaceFragment(R.id.fragmentContainer, DailyTodoFragment.newInstance(todoType))
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -30,12 +31,12 @@ class DailyTodoActivity : BaseActivity() {
                 showDailyTodoFragmentFor(TodoType.DAILY_TO_DO)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_not_todo -> {
-                showDailyTodoFragmentFor(TodoType.NOT_TO_DO)
+            R.id.navigation_fear -> {
+                showDailyTodoFragmentFor(TodoType.FEAR)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_todo -> {
-                showDailyTodoFragmentFor(TodoType.TO_DO)
+            R.id.navigation_passion -> {
+                showDailyTodoFragmentFor(TodoType.PASSION)
                 return@OnNavigationItemSelectedListener true
             }
         }

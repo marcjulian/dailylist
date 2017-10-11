@@ -24,7 +24,7 @@ class DailyTodoFragment : BaseFragment() {
     }
 
     private fun setupToolbar() {
-        activity.title = todoType.type
+        activity.title = getString(todoType.type)
     }
 
     private val addNewTodoClickListener = View.OnClickListener { view ->

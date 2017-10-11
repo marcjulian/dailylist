@@ -1,9 +1,11 @@
 package de.squiray.dailytodo.domain.entity
 
-enum class TodoType(val type: String) {
-    DAILY_TO_DO("Daily Todo"),
+import de.squiray.dailytodo.R
 
-    NOT_TO_DO("Not Todo"),
+enum class TodoType(val type: Int) {
+    DAILY_TO_DO(R.string.nav_title_daily_todo),
 
-    TO_DO("Todo")
+    FEAR(R.string.nav_title_fear),
+
+    PASSION(R.string.nav_title_passion)
 }

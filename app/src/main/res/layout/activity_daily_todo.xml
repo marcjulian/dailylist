@@ -14,27 +14,23 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"/>
-
-    <!--
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/container"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/navigation"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 
         <include
             android:id="@+id/navigation"
             layout="@layout/layout_bottom_nav"/>
+    </RelativeLayout>
 
-    </android.support.constraint.ConstraintLayout>
 
--->
 </android.support.design.widget.CoordinatorLayout>
 

@@ -33,9 +33,9 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector {
         }
     }
 
-    protected fun addFragment(containerView: Int, fragment: Fragment) {
+    protected fun replaceFragment(containerView: Int, fragment: Fragment) {
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(containerView, fragment)
+        fragmentTransaction.replace(containerView, fragment)
         fragmentTransaction.commit()
     }
 
