@@ -29,7 +29,9 @@ public class DailyTodoApp extends Application implements HasActivityInjector {
     }
 
     private void initDagger() {
-        DaggerAppComponent.create()
+        DaggerAppComponent.builder()
+                .application(this)
+                .build()
                 .inject(this);
     }
 
