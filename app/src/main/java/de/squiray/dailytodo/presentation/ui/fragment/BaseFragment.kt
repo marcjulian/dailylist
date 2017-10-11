@@ -1,11 +1,12 @@
 package de.squiray.dailytodo.presentation.ui.fragment
 
 import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import dagger.android.AndroidInjection
 import timber.log.Timber
 
 abstract class BaseFragment : Fragment() {
@@ -27,6 +28,11 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         logLifecycle("onViewCreated")
         onViewCreatedCalled = true
+    }
+
+    override fun onAttach(context: Context?) {
+        AndroidInjection.inject(this)
+        super.onAttach(context)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
