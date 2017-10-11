@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--
+    <include
+        android:id="@+id/rv_todos"
+        layout="@layout/layout_recycler_view"/>
+-->
+    <include
+        android:id="@+id/add_new_todo"
+        layout="@layout/layout_floating_action_button"/>
+
+</android.support.design.widget.CoordinatorLayout>

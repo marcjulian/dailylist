@@ -1,0 +1,26 @@
+###IntelliJ###
+
+*.iml
+*.ipr
+*.iws
+.idea/
+
+###Android###
+
+# Built application files
+*.apk
+*.ap_
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
