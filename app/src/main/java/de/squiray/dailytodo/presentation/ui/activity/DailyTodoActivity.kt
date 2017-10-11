@@ -42,5 +42,4 @@ class DailyTodoActivity : BaseActivity() {
         }
         false
     }
-
 }
