@@ -6,14 +6,15 @@ import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import de.squiray.dailytodo.DailyTodoApp;
+import de.squiray.dailytodo.data.repository.RepositoryModule;
 import de.squiray.dailytodo.presentation.di.module.ActivityBuilder;
 import de.squiray.dailytodo.presentation.di.module.AppModule;
 import de.squiray.dailytodo.presentation.di.module.FragmentBuilder;
+import de.squiray.dailytodo.presentation.di.module.ThreadModule;
 
-@Component(modules = {AndroidInjectionModule.class,
-        AppModule.class,
-        ActivityBuilder.class,
-        FragmentBuilder.class})
+@Component(modules = {AndroidInjectionModule.class, AppModule.class,
+        ThreadModule.class, RepositoryModule.class,
+        ActivityBuilder.class, FragmentBuilder.class})
 public interface AppComponent {
 
     @Component.Builder

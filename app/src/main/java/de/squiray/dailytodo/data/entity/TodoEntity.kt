@@ -8,7 +8,7 @@ import java.util.*
 
 @Entity(tableName = "todos")
 data class TodoEntity(@PrimaryKey
-                      @ColumnInfo
+                      @ColumnInfo(name = "todoId")
                       val id: String = UUID.randomUUID().toString(),
                       @ColumnInfo(name = "todo")
                       var todo: String,

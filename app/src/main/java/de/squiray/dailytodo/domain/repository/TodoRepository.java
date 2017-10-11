@@ -6,7 +6,7 @@ import de.squiray.dailytodo.domain.entity.Todo;
 
 public interface TodoRepository {
 
-    void save(Todo todo);
+    Todo save(Todo todo);
 
     Todo get(String id);
 
