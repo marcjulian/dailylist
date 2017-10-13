@@ -100,7 +100,7 @@ abstract class BaseFragment : Fragment() {
     /**
      * Override if content must be loaded and presented before interaction with the user
      */
-    internal fun loadContent() {
+    open fun loadContent() {
         // default empty
     }
 }

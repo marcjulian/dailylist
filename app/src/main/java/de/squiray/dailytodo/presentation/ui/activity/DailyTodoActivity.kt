@@ -41,8 +41,8 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView {
                 showDailyTodoFragmentFor(TodoType.FEAR)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_passion -> {
-                showDailyTodoFragmentFor(TodoType.PASSION)
+            R.id.navigation_goal -> {
+                showDailyTodoFragmentFor(TodoType.GOAL)
                 return@OnNavigationItemSelectedListener true
             }
         }

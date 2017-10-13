@@ -7,5 +7,5 @@ enum class TodoType(val type: Int) {
 
     FEAR(R.string.nav_title_fear),
 
-    PASSION(R.string.nav_title_passion)
+    GOAL(R.string.nav_title_goal)
 }

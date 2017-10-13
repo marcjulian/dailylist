@@ -49,7 +49,7 @@ abstract class UseCase<T> constructor(private val postExecutionThread: PostExecu
                 resultHandler.onFinished()
             }
 
-            override fun onError(t: Throwable?) {
+            override fun onError(t: Throwable) {
                 resultHandler.onError(t)
                 resultHandler.onFinished()
             }

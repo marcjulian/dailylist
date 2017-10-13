@@ -3,5 +3,5 @@
 
     <string name="nav_title_daily_todo">Daily Todo</string>
     <string name="nav_title_fear">Fear</string>
-    <string name="nav_title_passion">Passion</string>
+    <string name="nav_title_goal">Goal</string>
 </resources>

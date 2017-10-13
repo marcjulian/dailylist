@@ -28,12 +28,16 @@ class DailyTodoFragment : BaseFragment() {
         // TODO setup recyclerview and renderer
     }
 
+    override fun loadContent() {
+        dailyTodoPresenter.onLoadContent(todoType)
+    }
+
     private fun setupToolbar() {
         activity.title = getString(todoType.type)
     }
 
     private val addNewTodoClickListener = View.OnClickListener { view ->
-
+        dailyTodoPresenter.onAddTodoClicked(todoType)
     }
 
     companion object {

@@ -2,6 +2,8 @@ package de.squiray.dailytodo.presentation.di.component;
 
 import android.app.Application;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
@@ -12,6 +14,7 @@ import de.squiray.dailytodo.presentation.di.module.AppModule;
 import de.squiray.dailytodo.presentation.di.module.FragmentBuilder;
 import de.squiray.dailytodo.presentation.di.module.ThreadModule;
 
+@Singleton
 @Component(modules = {AndroidInjectionModule.class, AppModule.class,
         ThreadModule.class, RepositoryModule.class,
         ActivityBuilder.class, FragmentBuilder.class})
