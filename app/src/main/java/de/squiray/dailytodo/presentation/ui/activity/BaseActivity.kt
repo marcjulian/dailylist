@@ -66,6 +66,10 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
         return this
     }
 
+    fun getCurrentFragment(fragmentContainer: Int): Fragment {
+        return fragmentManager.findFragmentById(fragmentContainer)
+    }
+
     override fun showError(messageId: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

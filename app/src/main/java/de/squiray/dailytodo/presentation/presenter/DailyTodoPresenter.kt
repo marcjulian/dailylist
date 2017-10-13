@@ -20,7 +20,8 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         addTodoUseCase.todo = "First Todo"
         addTodoUseCase.type = type
         addTodoUseCase.run(object : NoOpResultHandler<Todo>() {
-            override fun onSuccess(t: Todo) {
+            override fun onSuccess(todo: Todo) {
+                view.showTodo(todo)
                 view.showMessage("Todo added")
             }
         })
@@ -30,7 +31,8 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         getTodosUseCase.type = type
         getTodosUseCase.run(object : NoOpResultHandler<List<Todo>>() {
             override fun onSuccess(todos: List<Todo>) {
-                todos.forEach { todo -> view.showMessage(todo.todo) }
+                view.showTodos(todos)
+                view.showMessage("Todos " + todos.size)
             }
         })
 
