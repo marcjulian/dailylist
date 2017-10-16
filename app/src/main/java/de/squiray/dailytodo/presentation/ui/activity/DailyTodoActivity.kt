@@ -5,6 +5,7 @@ import de.squiray.dailytodo.R
 import de.squiray.dailytodo.domain.entity.Todo
 import de.squiray.dailytodo.domain.entity.TodoType
 import de.squiray.dailytodo.presentation.presenter.DailyTodoPresenter
+import de.squiray.dailytodo.presentation.ui.bottomdialog.AddTodoBottomDialog
 import de.squiray.dailytodo.presentation.ui.fragment.DailyTodoFragment
 import de.squiray.dailytodo.presentation.ui.view.DailyTodoView
 import de.squiray.dailytodo.util.annotation.Activity
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 @Activity(layout = R.layout.activity_daily_todo)
-class DailyTodoActivity : BaseActivity(), DailyTodoView {
+class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Callback {
 
     @Inject
     lateinit var dailyTodoPresenter: DailyTodoPresenter
@@ -42,6 +43,10 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView {
 
     private fun dailyTodoFragment(): DailyTodoFragment {
         return getCurrentFragment(R.id.fragmentContainer) as DailyTodoFragment
+    }
+
+    override fun showAddTodoDialog(type: TodoType) {
+        showDialog(AddTodoBottomDialog.newInstance(type))
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

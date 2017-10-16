@@ -16,13 +16,15 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
     : Presenter<DailyTodoView>() {
 
     fun onAddTodoClicked(type: TodoType) {
-        // TODO open dialog on view
-        addTodoUseCase.todo = "First Todo"
+        view.showAddTodoDialog(type)
+    }
+
+    fun onAddNewTodo(todo: String, type: TodoType) {
+        addTodoUseCase.todo = todo
         addTodoUseCase.type = type
         addTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(todo: Todo) {
                 view.showTodo(todo)
-                view.showMessage("Todo added")
             }
         })
     }
@@ -32,7 +34,6 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         getTodosUseCase.run(object : NoOpResultHandler<List<Todo>>() {
             override fun onSuccess(todos: List<Todo>) {
                 view.showTodos(todos)
-                view.showMessage("Todos " + todos.size)
             }
         })
 

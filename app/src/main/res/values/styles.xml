@@ -6,4 +6,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BottomSheetDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/colorDarkGray</item>
+    </style>
+
 </resources>

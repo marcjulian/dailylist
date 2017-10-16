@@ -1,16 +1,15 @@
 package de.squiray.dailytodo.presentation.ui.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.pedrogomez.renderers.RVRendererAdapter
-import com.pedrogomez.renderers.Renderer
-import com.pedrogomez.renderers.RendererBuilder
 import de.squiray.dailytodo.R
 import de.squiray.dailytodo.domain.entity.Todo
 import de.squiray.dailytodo.domain.entity.TodoType
 import de.squiray.dailytodo.presentation.presenter.DailyTodoPresenter
-import de.squiray.dailytodo.presentation.ui.renderer.TodoRenderer
+import de.squiray.dailytodo.presentation.ui.adapter.TodoAdapter
 import de.squiray.dailytodo.util.annotation.Fragment
+import de.squiray.dailytodo.util.extension.toast
 import kotlinx.android.synthetic.main.fragment_daily_todo.*
 import javax.inject.Inject
 
@@ -34,7 +33,7 @@ class DailyTodoFragment : BaseFragment() {
     @Inject
     lateinit var dailyTodoPresenter: DailyTodoPresenter
 
-    lateinit var todoAdapter: RVRendererAdapter<Todo>
+    lateinit var todoAdapter: TodoAdapter
 
     private val todoType: TodoType
         get() = arguments.getSerializable(ARG_TODO_TYPE) as TodoType
@@ -46,9 +45,8 @@ class DailyTodoFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() {
-        val todoRenderer: Renderer<Todo> = TodoRenderer()
-        val rendererBuilder: RendererBuilder<Todo> = RendererBuilder(todoRenderer)
-        todoAdapter = RVRendererAdapter<Todo>(rendererBuilder)
+        todoAdapter = TodoAdapter(ArrayList(), todoAdapterCallback)
+        rv_todos.layoutManager = LinearLayoutManager(activity)
         rv_todos.adapter = todoAdapter
     }
 
@@ -60,17 +58,25 @@ class DailyTodoFragment : BaseFragment() {
         activity.title = getString(todoType.type)
     }
 
-    private val addNewTodoClickListener = View.OnClickListener { view ->
+    private val addNewTodoClickListener = View.OnClickListener {
         dailyTodoPresenter.onAddTodoClicked(todoType)
     }
 
     fun showTodos(todos: List<Todo>) {
-        todoAdapter.diffUpdate(todos)
+        todoAdapter.addAll(todos)
     }
 
     fun showTodo(todo: Todo) {
         todoAdapter.add(todo)
-        todoAdapter.notifyDataSetChanged()
     }
 
+    private val todoAdapterCallback = object : TodoAdapter.Callback {
+        override fun onTodoClicked(todo : Todo) {
+            toast("todo clicked ${todo.todo}")
+        }
+    }
+
+
 }
+
+
