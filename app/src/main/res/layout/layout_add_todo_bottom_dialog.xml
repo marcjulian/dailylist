@@ -9,13 +9,16 @@
     <EditText
         android:id="@+id/addTodoText"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:backgroundTint="@android:color/transparent"/>
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/addTodo"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/addTodo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="@string/screen_todo_add_todo"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

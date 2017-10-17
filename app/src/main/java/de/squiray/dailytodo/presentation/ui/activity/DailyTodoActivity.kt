@@ -49,6 +49,10 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
         showDialog(AddTodoBottomDialog.newInstance(type))
     }
 
+    override fun onAddTodoClicked(todo: String, type: TodoType) {
+        dailyTodoPresenter.onAddNewTodo(todo, type)
+    }
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_daily_todo -> {

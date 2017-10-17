@@ -45,7 +45,7 @@ public abstract class BaseBottomDialog<Callback extends BaseBottomDialog.BaseCal
     private View inflateView() {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         View view = layoutInflater.inflate(getDialogResource(), null);
-        setupView();
+        setupView(view);
         return view;
     }
 
@@ -53,5 +53,5 @@ public abstract class BaseBottomDialog<Callback extends BaseBottomDialog.BaseCal
         return getClass().getAnnotation(BottomSheetDialog.class).layout();
     }
 
-    protected abstract void setupView();
+    protected abstract void setupView(View view);
 }
