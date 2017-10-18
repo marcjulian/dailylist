@@ -10,6 +10,10 @@ class Activities {
                 val dailyTodoPresenter = activity.dailyTodoPresenter
                 dailyTodoPresenter.view = activity
                 return dailyTodoPresenter
+            } else if (activity is SettingsActivity) {
+                val settingsPresenter = activity.presenter
+                settingsPresenter.view = activity
+                return settingsPresenter
             }
 
             throw IllegalStateException("Failed to initialize presenter for " + activity.javaClass.name)

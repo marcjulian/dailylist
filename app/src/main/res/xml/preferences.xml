@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="@string/screen_settings_section_general"
+        android:title="@string/screen_settings_section_general">
+        <ListPreference
+            android:defaultValue="ONE_DAILY_TODO"
+            android:dialogTitle="@string/screen_settings_daily_limit"
+            android:entries="@array/screen_settings_daily_limit_entries"
+            android:entryValues="@array/screen_settings_daily_limit_values"
+            android:key="dailyTodoLimit"
+            android:summary="%s"
+            android:title="@string/screen_settings_daily_limit"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/screen_settings_section_version">
+        <Preference
+            android:enabled="false"
+            android:key="appVersion"
+            android:title="@string/app_name"/>
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -5,6 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -20,6 +22,7 @@ import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
 
+    private val NO_MENU = -1
     private val ACTIVE_DIALOG = "activeDialog"
 
     @Inject
@@ -52,6 +55,29 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(containerView, fragment)
         fragmentTransaction.commit()
+    }
+
+
+   override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val menuResource = getMenuResource()
+        if (menuResource != NO_MENU) {
+            menuInflater.inflate(menuResource, menu)
+            return true
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    open fun getMenuResource(): Int {
+        return NO_MENU
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        onMenuItemSelected(item.itemId)
+        return super.onOptionsItemSelected(item)
+    }
+
+    open fun onMenuItemSelected(itemId: Int): Boolean {
+        return false
     }
 
     override fun fragmentInjector(): AndroidInjector<Fragment> = fragmentInjector

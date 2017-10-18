@@ -1,5 +1,6 @@
 package de.squiray.dailytodo.presentation.ui.activity
 
+import android.content.Intent
 import android.support.design.widget.BottomNavigationView
 import de.squiray.dailytodo.R
 import de.squiray.dailytodo.domain.entity.Todo
@@ -23,6 +24,20 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
         setupToolbar()
         showDailyTodoFragmentFor(TodoType.DAILY_TO_DO)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
+    override fun getMenuResource(): Int {
+        return R.menu.menu_daily_todo
+    }
+
+    override fun onMenuItemSelected(itemId: Int): Boolean {
+        when (itemId) {
+            R.id.action_settings -> {
+                dailyTodoPresenter.startIntent(Intent(this, SettingsActivity::class.java))
+                return true
+            }
+        }
+        return super.onMenuItemSelected(itemId)
     }
 
     private fun setupToolbar() {

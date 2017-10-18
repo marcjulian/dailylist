@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen_settings_daily_limit_entries">
+        <item>@string/daily_limit_1</item>
+        <item>@string/daily_limit_2</item>
+        <item>@string/daily_limit_3</item>
+        <item>@string/daily_limit_5</item>
+    </string-array>
+    <string-array name="screen_settings_daily_limit_values">
+        <item>ONE_DAILY_TODO</item>
+        <item>TWO_DAILY_TODO</item>
+        <item>THREE_DAILY_TODO</item>
+        <item>FIVE_DAILY_TODO</item>
+    </string-array>
+</resources>
