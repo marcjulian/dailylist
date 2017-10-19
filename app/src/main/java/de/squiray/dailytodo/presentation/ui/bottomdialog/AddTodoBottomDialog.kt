@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import de.squiray.dailytodo.R
@@ -30,6 +31,14 @@ class AddTodoBottomDialog : BaseBottomDialog<AddTodoBottomDialog.Callback>() {
 
     override fun setupView(view: View) {
         val addTodoText: EditText = view.findViewById(R.id.addTodoText)
+        addTodoText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                callback.onAddTodoClicked(addTodoText.text.toString(), todoType())
+                dismiss()
+                true
+            }
+            false
+        }
         val addTodo: Button = view.findViewById(R.id.addTodo)
 
         addTodoText.hint = effectiveAddTodoHint(todoType())
