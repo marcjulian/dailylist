@@ -8,10 +8,6 @@ import timber.log.Timber
 
 class DailyTodoLimitResetAlarmReceiver : BroadcastReceiver() {
 
-    companion object {
-        val REQUEST_CODE = 5678910
-    }
-
     override fun onReceive(context: Context, intent: Intent) {
         Timber.tag("DailyTodoLimitResetAlarmReceiver").i("reset daily todo")
         SharedPreferencesHelper(context).resetDailyTodoAdded()
