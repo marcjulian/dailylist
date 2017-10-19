@@ -10,6 +10,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import de.squiray.dailytodo.presentation.di.component.DaggerAppComponent;
+import de.squiray.dailytodo.presentation.service.DailyTodoLimitResetAlarm;
 import de.squiray.dailytodo.util.logging.CrashLogging;
 import de.squiray.dailytodo.util.logging.DebugLogger;
 import de.squiray.dailytodo.util.logging.ReleaseLogger;
@@ -20,12 +21,16 @@ public class DailyTodoApp extends Application implements HasActivityInjector {
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingActivityInjector;
 
+    @Inject
+    DailyTodoLimitResetAlarm dailyTodoLimitResetAlarm;
+
     @Override
     public void onCreate() {
         super.onCreate();
         initDagger();
         setupLogging();
         logAppStats();
+        dailyTodoLimitResetAlarm.scheduleAlarm();
     }
 
     private void initDagger() {

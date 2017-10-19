@@ -26,7 +26,7 @@ abstract class UseCase<T> constructor(private val postExecutionThread: PostExecu
                 timber.log.Timber.tag("UseCase").d("started %x", id)
                 val result = execute()
                 failed = false
-                timber.log.Timber.tag("tUseCase").d("finished %x", id)
+                timber.log.Timber.tag("UseCase").d("finished %x", id)
                 return@Callable result
             } finally {
                 if (failed) {
