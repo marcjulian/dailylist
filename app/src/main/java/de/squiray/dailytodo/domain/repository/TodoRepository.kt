@@ -8,6 +8,8 @@ interface TodoRepository {
 
     fun save(todo: Todo): Todo
 
+    fun update(todo: Todo): Todo
+
     operator fun get(id: String): Todo
 
     fun deleteTodo(todo: Todo)

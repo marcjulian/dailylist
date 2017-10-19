@@ -68,6 +68,10 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
         dailyTodoPresenter.onAddNewTodo(todo, type)
     }
 
+    override fun deleteTodo(completedTodo: Todo) {
+        dailyTodoFragment().deleteTodo(completedTodo)
+    }
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_daily_todo -> {

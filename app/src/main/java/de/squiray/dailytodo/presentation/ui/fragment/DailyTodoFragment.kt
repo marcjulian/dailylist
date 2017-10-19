@@ -74,6 +74,14 @@ class DailyTodoFragment : BaseFragment() {
         override fun onTodoClicked(todo : Todo) {
             toast("todo clicked ${todo.todo}")
         }
+
+        override fun onCompleteTodoClicked(todo: Todo) {
+            dailyTodoPresenter.onCompleteTodoClicked(todo)
+        }
+    }
+
+    fun deleteTodo(completedTodo: Todo) {
+        todoAdapter.remove(completedTodo)
     }
 
 

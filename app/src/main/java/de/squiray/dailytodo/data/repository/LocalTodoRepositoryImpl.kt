@@ -19,6 +19,11 @@ constructor(private val todoDao: TodoDao,
         return todo
     }
 
+    override fun update(todo: Todo): Todo {
+        todoDao.updateTodos(todoEntityMapper.toEntity(todo))
+        return todo
+    }
+
     override fun get(id: String): Todo {
         return todoEntityMapper.fromEntity(todoDao.get(id))
     }

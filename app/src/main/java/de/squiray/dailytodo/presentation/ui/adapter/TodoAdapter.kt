@@ -8,12 +8,13 @@ import de.squiray.dailytodo.domain.entity.Todo
 import de.squiray.dailytodo.util.extension.inflate
 import kotlinx.android.synthetic.main.item_todo.view.*
 
-class TodoAdapter(val items: MutableList<Todo>,
+class TodoAdapter(private val items: MutableList<Todo>,
                   private val callback: Callback)
     : RecyclerView.Adapter<TodoAdapter.ViewHolder>() {
 
     interface Callback {
         fun onTodoClicked(todo: Todo)
+        fun onCompleteTodoClicked(todo: Todo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
@@ -26,7 +27,9 @@ class TodoAdapter(val items: MutableList<Todo>,
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(todo: Todo, callback: Callback) = with(itemView) {
+            completeTodo.isChecked = false
             todoTitle.text = todo.todo
+            completeTodo.setOnCheckedChangeListener { _, _ -> callback.onCompleteTodoClicked(todo) }
             setOnClickListener { callback.onTodoClicked(todo) }
         }
     }
@@ -41,5 +44,12 @@ class TodoAdapter(val items: MutableList<Todo>,
         notifyItemChanged(positionOf(todo))
     }
 
+    fun remove(todo: Todo) {
+        val positionOf = positionOf(todo)
+        items.remove(todo)
+        notifyItemChanged(positionOf)
+    }
+
     private fun positionOf(todo: Todo) = items.indexOf(todo)
+
 }

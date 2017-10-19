@@ -13,4 +13,6 @@ data class TodoEntity(@PrimaryKey
                       @ColumnInfo(name = "todo")
                       var todo: String,
                       @ColumnInfo(name = "todoType")
-                      var todoType: TodoType)
+                      var todoType: TodoType,
+                      @ColumnInfo(name = "completed")
+                      var completed: Boolean)
