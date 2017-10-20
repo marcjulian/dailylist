@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="de.squiray.dailytodo">
+          package="de.squiray.dailylist">
 
     <application
-        android:name=".DailyTodoApp"
+        android:name="de.squiray.dailylist.DailylistApp"
         android:allowBackup="true"
         android:icon="@mipmap/dailylist"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".presentation.ui.activity.SplashActivity"
+            android:name="de.squiray.dailylist.presentation.ui.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -20,16 +20,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.ui.activity.DailyTodoActivity"
+            android:name="de.squiray.dailylist.presentation.ui.activity.DailyTodoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing"/>
 
         <activity
-            android:name=".presentation.ui.activity.SettingsActivity"
+            android:name="de.squiray.dailylist.presentation.ui.activity.SettingsActivity"
             android:screenOrientation="portrait"/>
 
         <receiver
-            android:name=".presentation.service.receiver.DailyTodoLimitResetAlarmReceiver"/>
+            android:name="de.squiray.dailylist.presentation.service.receiver.DailyTodoLimitResetAlarmReceiver"/>
     </application>
 
 </manifest>
