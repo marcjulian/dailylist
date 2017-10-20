@@ -42,6 +42,27 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
         setupView()
     }
 
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        if (presenter != null) {
+            presenter!!.resume()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (presenter != null) {
+            presenter!!.pause()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (presenter != null) {
+            presenter!!.destroy()
+        }
+    }
+
     private fun contentLayout(): Int {
         val layout = javaClass.getAnnotation(Activity::class.java).layout
         return if (layout == -1) {
@@ -104,7 +125,6 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
 
 
     override fun showMessage(message: String, vararg args: Any) = toast(format(message, args))
-
 
     override fun showDialog(dialog: DialogFragment) {
         closeDialog()

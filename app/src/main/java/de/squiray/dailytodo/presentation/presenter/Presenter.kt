@@ -11,6 +11,34 @@ abstract class Presenter<V : View> : ActivityHolder {
 
     lateinit var view: V
 
+    private var isPaused: Boolean = false
+
+    fun resume() {
+        isPaused = false
+        resumed()
+    }
+
+    fun pause() {
+        isPaused = true
+        paused()
+    }
+
+    fun destroy() {
+        destroyed()
+    }
+
+    open fun resumed() {
+
+    }
+
+    open fun paused() {
+
+    }
+
+    open fun destroyed() {
+
+    }
+
     fun startIntent(intent: Intent) {
         activity().startActivity(intent)
     }
@@ -19,4 +47,7 @@ abstract class Presenter<V : View> : ActivityHolder {
 
     override fun context(): Context = view.context()
 
+    fun finish() {
+        view.finish()
+    }
 }

@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 
 abstract class UseCase<T> constructor(private val postExecutionThread: PostExecutionThread,
-                                      private val threadExecutor: ThreadExecutor) {
+                                      private val threadExecutor: ThreadExecutor) : Unsubscribable {
 
     private val executionId = AtomicInteger(System.currentTimeMillis().toInt() and 0x7fffffff)
 
@@ -54,6 +54,10 @@ abstract class UseCase<T> constructor(private val postExecutionThread: PostExecu
                 resultHandler.onFinished()
             }
         }
+    }
+
+    override fun unsubscribe() {
+        disposable.dispose()
     }
 
     protected abstract fun execute(): T

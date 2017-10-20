@@ -6,7 +6,11 @@ class Activities {
 
     companion object {
         fun initializePresenter(activity: BaseActivity): Presenter<*> {
-            if (activity is DailyTodoActivity) {
+            if (activity is SplashActivity) {
+                val splashPresenter = activity.splashPresenter
+                splashPresenter.view = activity
+                return splashPresenter
+            } else if (activity is DailyTodoActivity) {
                 val dailyTodoPresenter = activity.dailyTodoPresenter
                 dailyTodoPresenter.view = activity
                 return dailyTodoPresenter
