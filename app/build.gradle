@@ -4,14 +4,16 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "de.squiray.dailytodo"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "0.1.0"
+        applicationId globalConfiguration.getAt("androidApplicationId")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+        versionName globalConfiguration.getAt("androidVersionName")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -49,8 +51,8 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.3'
 
     // Room
-    implementation "android.arch.persistence.room:runtime:1.0.0-beta1"
-    kapt "android.arch.persistence.room:compiler:1.0.0-beta1"
+    implementation "android.arch.persistence.room:runtime:1.0.0-rc1"
+    kapt "android.arch.persistence.room:compiler:1.0.0-rc1"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {

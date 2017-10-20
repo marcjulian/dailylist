@@ -5,11 +5,11 @@ import de.squiray.dailytodo.presentation.ui.activity.DailyTodoActivity
 import de.squiray.dailytodo.presentation.ui.view.SplashView
 import javax.inject.Inject
 
-class SplashPresenter @Inject constructor(): Presenter<SplashView>() {
+class SplashPresenter @Inject constructor() : Presenter<SplashView>() {
 
     override fun resumed() {
-       startIntent(Intent(context(), DailyTodoActivity::class.java))
-       finish()
+        startIntent(Intent(context(), DailyTodoActivity::class.java))
+        finish()
     }
 
 }
