@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bottomSheetTheme" format="reference"/>
+    <attr name="bottomSheetBackground" format="color|reference"/>
+    <attr name="bottomSheetTitleColor" format="color"/>
+    <attr name="bottomSheetItemColor" format="color"/>
+    <attr name="bottomSheetDividerColor" format="color"/>
+    <attr name="bottomSheetDimAmount" format="fraction"/>
+    <attr name="bottomSheetDragSensitivity" format="fraction"/>
+</resources>
