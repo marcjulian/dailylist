@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Dailylist</string>
 
-    <string name="nav_title_daily_todo">Daily Todo</string>
+    <string name="nav_title_daily_todo">Daily</string>
     <string name="nav_title_fear">Fear</string>
     <string name="nav_title_goal">Goal</string>
+
     <string name="screen_todo_add_todo">Add</string>
     <string name="screen_todo_add_todo_daily_hint">Add a daily todo</string>
     <string name="screen_todo_add_todo_fear_hint">Add a fear</string>
