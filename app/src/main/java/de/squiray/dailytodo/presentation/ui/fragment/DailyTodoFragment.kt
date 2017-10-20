@@ -35,7 +35,7 @@ class DailyTodoFragment : BaseFragment() {
 
     lateinit var todoAdapter: TodoAdapter
 
-    private val todoType: TodoType
+    public val todoType: TodoType
         get() = arguments.getSerializable(ARG_TODO_TYPE) as TodoType
 
     override fun setupView() {

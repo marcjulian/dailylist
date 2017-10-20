@@ -73,16 +73,26 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        dailyTodoFragment().todoType
         when (item.itemId) {
             R.id.navigation_daily_todo -> {
+                if(dailyTodoFragment().todoType == TodoType.DAILY_TO_DO) {
+                    return@OnNavigationItemSelectedListener false
+                }
                 showDailyTodoFragmentFor(TodoType.DAILY_TO_DO)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_fear -> {
+                if(dailyTodoFragment().todoType == TodoType.FEAR) {
+                    return@OnNavigationItemSelectedListener false
+                }
                 showDailyTodoFragmentFor(TodoType.FEAR)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_goal -> {
+                if(dailyTodoFragment().todoType == TodoType.GOAL) {
+                    return@OnNavigationItemSelectedListener false
+                }
                 showDailyTodoFragmentFor(TodoType.GOAL)
                 return@OnNavigationItemSelectedListener true
             }
