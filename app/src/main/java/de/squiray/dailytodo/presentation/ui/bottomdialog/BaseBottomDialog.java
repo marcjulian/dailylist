@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 
 import de.squiray.dailytodo.util.annotation.BottomSheetDialog;
 
