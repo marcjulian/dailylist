@@ -41,13 +41,13 @@ class TodoAdapter(private val items: MutableList<Todo>,
 
     fun add(todo: Todo) {
         items.add(todo)
-        notifyItemChanged(positionOf(todo))
+        notifyItemInserted(positionOf(todo))
     }
 
     fun remove(todo: Todo) {
         val positionOf = positionOf(todo)
         items.remove(todo)
-        notifyItemChanged(positionOf)
+        notifyItemRemoved(positionOf)
     }
 
     private fun positionOf(todo: Todo) = items.indexOf(todo)

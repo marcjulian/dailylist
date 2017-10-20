@@ -9,7 +9,6 @@ import de.squiray.dailytodo.domain.entity.TodoType
 import de.squiray.dailytodo.presentation.presenter.DailyTodoPresenter
 import de.squiray.dailytodo.presentation.ui.adapter.TodoAdapter
 import de.squiray.dailytodo.util.annotation.Fragment
-import de.squiray.dailytodo.util.extension.toast
 import kotlinx.android.synthetic.main.fragment_daily_todo.*
 import javax.inject.Inject
 
@@ -35,7 +34,7 @@ class DailyTodoFragment : BaseFragment() {
 
     lateinit var todoAdapter: TodoAdapter
 
-    public val todoType: TodoType
+    val todoType: TodoType
         get() = arguments.getSerializable(ARG_TODO_TYPE) as TodoType
 
     override fun setupView() {
@@ -71,8 +70,8 @@ class DailyTodoFragment : BaseFragment() {
     }
 
     private val todoAdapterCallback = object : TodoAdapter.Callback {
-        override fun onTodoClicked(todo : Todo) {
-            toast("todo clicked ${todo.todo}")
+        override fun onTodoClicked(todo: Todo) {
+            // TODO do something, maybe edit todo
         }
 
         override fun onCompleteTodoClicked(todo: Todo) {
