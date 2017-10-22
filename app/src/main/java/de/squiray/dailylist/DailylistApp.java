@@ -10,6 +10,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import de.squiray.dailylist.presentation.di.component.DaggerAppComponent;
+import de.squiray.dailylist.presentation.service.DailyStrikeResetAlarm;
 import de.squiray.dailylist.presentation.service.DailyTodoLimitResetAlarm;
 import de.squiray.dailylist.util.logging.CrashLogging;
 import de.squiray.dailylist.util.logging.DebugLogger;
@@ -24,6 +25,9 @@ public class DailylistApp extends Application implements HasActivityInjector {
     @Inject
     DailyTodoLimitResetAlarm dailyTodoLimitResetAlarm;
 
+    @Inject
+    DailyStrikeResetAlarm dailyStrikeResetAlarm;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,6 +35,7 @@ public class DailylistApp extends Application implements HasActivityInjector {
         setupLogging();
         logAppStats();
         dailyTodoLimitResetAlarm.scheduleAlarm();
+        dailyStrikeResetAlarm.scheduleAlarm();
     }
 
     private void initDagger() {

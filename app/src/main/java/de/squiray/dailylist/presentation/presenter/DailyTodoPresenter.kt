@@ -21,7 +21,7 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
     : Presenter<DailyTodoView>() {
 
     fun onAddTodoClicked(type: TodoType) {
-        if(type == TodoType.DAILY_TO_DO && hasDailyLimitReached()) {
+        if (type == TodoType.DAILY_TO_DO && hasDailyLimitReached()) {
             view.showMessage(R.string.screen_daily_todo_limit_reached)
             return
         }
@@ -29,7 +29,7 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
     }
 
     private fun hasDailyLimitReached(): Boolean {
-        return sharedPreferencesHelper.getAddedDailyTodoNumber() == sharedPreferencesHelper.getDailyTodoLimit().limit
+        return sharedPreferencesHelper.getAddedDailyTodoNumber() >= sharedPreferencesHelper.getDailyTodoLimit().limit
     }
 
     fun onAddNewTodo(todo: String, type: TodoType) {
@@ -56,13 +56,17 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
                 view.showTodos(todos)
             }
         })
-
     }
 
     fun onCompleteTodoClicked(todo: Todo) {
         completeTodoUseCase.todo = todo
         completeTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(completedTodo: Todo) {
+                if (completedTodo.todoType == TodoType.DAILY_TO_DO
+                        && !sharedPreferencesHelper.hasDailyStrikeIncToday()) {
+                    sharedPreferencesHelper.incrementDailyStrikeCount()
+                    sharedPreferencesHelper.setDailyStrikeIncToday(true)
+                }
                 view.deleteTodo(completedTodo)
             }
         })

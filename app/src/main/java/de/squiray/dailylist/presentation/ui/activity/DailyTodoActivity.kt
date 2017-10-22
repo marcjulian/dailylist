@@ -18,7 +18,9 @@ import de.squiray.dailylist.presentation.presenter.DailyTodoPresenter
 import de.squiray.dailylist.presentation.ui.bottomdialog.AddTodoBottomDialog
 import de.squiray.dailylist.presentation.ui.fragment.DailyTodoFragment
 import de.squiray.dailylist.presentation.ui.view.DailyTodoView
+import de.squiray.dailylist.util.Consumer
 import de.squiray.dailylist.util.annotation.Activity
+import de.squiray.dailylist.util.helper.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
@@ -30,10 +32,14 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
     @Inject
     lateinit var dailyTodoPresenter: DailyTodoPresenter
 
+    @Inject
+    lateinit var sharedPreferencesHelper: SharedPreferencesHelper
+
     override fun setupView() {
         setupToolbar()
         showDailyTodoFragmentFor(TodoType.DAILY_TO_DO)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        sharedPreferencesHelper.addDailyStrikeListener(onDailyStrikeCountChanged)
     }
 
     override fun getMenuResource(): Int {
@@ -42,7 +48,7 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
 
     override fun onCreatingOptionsMenu(menu: Menu) {
         val strikeCountItem = menu.findItem(R.id.action_strike_count)
-        strikeCountItem.icon = buildStrikeCounterDrawable(0)
+        strikeCountItem.icon = buildStrikeCounterDrawable(sharedPreferencesHelper.getDailyStrikeCount())
     }
 
     private fun buildStrikeCounterDrawable(counter: Int): Drawable {
@@ -81,8 +87,7 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
         menu.findItem(R.id.action_strike_count).isVisible =
                 dailyTodoFragment().todoType == TodoType.DAILY_TO_DO
 
-        // TODO check if it has a strike
-        if (true) {
+        if (sharedPreferencesHelper.getDailyStrikeCount() > 0) {
             menu.findItem(R.id.action_strike).icon.setColorFilter(
                     ContextCompat.getColor(this, R.color.colorOrange),
                     PorterDuff.Mode.SRC_ATOP)
@@ -100,6 +105,7 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
 
     private fun showDailyTodoFragmentFor(todoType: TodoType) {
         replaceFragment(R.id.fragmentContainer, DailyTodoFragment.newInstance(todoType))
+        invalidateOptionsMenu()
     }
 
     override fun showTodos(todos: List<Todo>) {
@@ -128,7 +134,6 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         dailyTodoFragment().todoType
-        invalidateOptionsMenu()
         when (item.itemId) {
             R.id.navigation_daily_todo -> {
                 if (dailyTodoFragment().todoType == TodoType.DAILY_TO_DO) {
@@ -154,4 +159,9 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
         }
         false
     }
+
+    private val onDailyStrikeCountChanged = Consumer<Int> {
+        invalidateOptionsMenu()
+    }
+
 }
