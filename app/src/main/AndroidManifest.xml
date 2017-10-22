@@ -30,6 +30,9 @@
 
         <receiver
             android:name="de.squiray.dailylist.presentation.service.receiver.DailyTodoLimitResetAlarmReceiver"/>
+
+        <receiver
+            android:name=".presentation.service.receiver.DailyStrikeResetAlarmReceiver"/>
     </application>
 
 </manifest>

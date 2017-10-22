@@ -83,9 +83,14 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
         val menuResource = getMenuResource()
         if (menuResource != NO_MENU) {
             menuInflater.inflate(menuResource, menu)
+            onCreatingOptionsMenu(menu)
             return true
         }
         return super.onCreateOptionsMenu(menu)
+    }
+
+    open fun onCreatingOptionsMenu(menu: Menu) {
+
     }
 
     open fun getMenuResource(): Int {

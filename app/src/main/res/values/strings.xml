@@ -10,6 +10,9 @@
     <string name="screen_todo_add_todo_fear_hint">Add a fear</string>
     <string name="screen_todo_add_todo_goal_hint">Add a goal</string>
 
+
+    <string name="screen_strike_title">Strike</string>
+    <string name="screen_strike_count_title">Strike count</string>
     <string name="screen_daily_todo_limit_reached">Daily todo limit exceeded</string>
     <string name="screen_settings_title">Settings</string>
 
