@@ -15,4 +15,10 @@
         android:visible="false"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/action_strike_count"
+        android:title="@string/screen_strike_count_title"
+        android:visible="false"
+        app:showAsAction="ifRoom"/>
+
 </menu>
