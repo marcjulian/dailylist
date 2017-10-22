@@ -18,6 +18,10 @@
     <string name="screen_settings_section_general">Allgemein</string>
     <string name="screen_settings_daily_limit">Tägliches Limit</string>
 
+
+    <string name="screen_strike_title">Streak</string>
+    <string name="screen_strike_count_title">Streakanzahl</string>
+
     <string name="daily_limit_1">1 Todo täglich</string>
     <string name="daily_limit_5">5 Todos täglich</string>
     <string name="daily_limit_3">3 Todos täglich</string>
