@@ -1,7 +1,10 @@
 package de.squiray.dailylist.presentation.ui.activity
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.content.ContextCompat
+import android.view.Menu
 import de.squiray.dailylist.R
 import de.squiray.dailylist.domain.entity.Todo
 import de.squiray.dailylist.domain.entity.TodoType
@@ -40,6 +43,19 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
         return super.onMenuItemSelected(itemId)
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        menu.findItem(R.id.action_strike).isVisible =
+                dailyTodoFragment().todoType == TodoType.DAILY_TO_DO
+        // TODO check if it has a strike
+        if(false) {
+            menu.findItem(R.id.action_strike).icon.setColorFilter(
+                    ContextCompat.getColor(this, R.color.colorOrange),
+                    PorterDuff.Mode.SRC_ATOP)
+        }
+
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     private fun setupToolbar() {
         setSupportActionBar(toolbar)
     }
@@ -74,23 +90,24 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         dailyTodoFragment().todoType
+        invalidateOptionsMenu()
         when (item.itemId) {
             R.id.navigation_daily_todo -> {
-                if(dailyTodoFragment().todoType == TodoType.DAILY_TO_DO) {
+                if (dailyTodoFragment().todoType == TodoType.DAILY_TO_DO) {
                     return@OnNavigationItemSelectedListener false
                 }
                 showDailyTodoFragmentFor(TodoType.DAILY_TO_DO)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_fear -> {
-                if(dailyTodoFragment().todoType == TodoType.FEAR) {
+                if (dailyTodoFragment().todoType == TodoType.FEAR) {
                     return@OnNavigationItemSelectedListener false
                 }
                 showDailyTodoFragmentFor(TodoType.FEAR)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_goal -> {
-                if(dailyTodoFragment().todoType == TodoType.GOAL) {
+                if (dailyTodoFragment().todoType == TodoType.GOAL) {
                     return@OnNavigationItemSelectedListener false
                 }
                 showDailyTodoFragmentFor(TodoType.GOAL)

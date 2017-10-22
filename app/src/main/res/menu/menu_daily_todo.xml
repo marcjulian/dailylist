@@ -5,5 +5,14 @@
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/screen_settings_title"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_strike"
+        android:enabled="false"
+        android:icon="@drawable/ic_fire"
+        android:title="@string/screen_strike_title"
+        android:visible="false"
+        app:showAsAction="ifRoom"/>
+
 </menu>

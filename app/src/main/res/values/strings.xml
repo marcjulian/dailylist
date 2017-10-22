@@ -21,4 +21,5 @@
     <string name="daily_limit_2">2 daily to dos</string>
     <string name="daily_limit_3">3 daily to dos</string>
     <string name="daily_limit_5">5 daily to dos</string>
+    <string name="screen_strike_title">Strike</string>
 </resources>
