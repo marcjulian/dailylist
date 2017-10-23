@@ -65,13 +65,14 @@ class DailyTodoFragment : BaseFragment() {
         todoAdapter.addAll(todos)
     }
 
-    fun showTodo(todo: Todo) {
-        todoAdapter.add(todo)
+    fun addOrUpdate(todo: Todo) {
+        todoAdapter.addOrReplace(todo)
     }
 
     private val todoAdapterCallback = object : TodoAdapter.Callback {
         override fun onTodoClicked(todo: Todo) {
             // TODO do something, maybe edit todo
+            dailyTodoPresenter.onTodoClicked(todo)
         }
 
         override fun onCompleteTodoClicked(todo: Todo) {

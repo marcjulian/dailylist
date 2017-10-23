@@ -28,7 +28,8 @@ constructor(private val todoDao: TodoDao,
         return todoEntityMapper.fromEntity(todoDao.get(id))
     }
 
-    override fun deleteTodo(todo: Todo) {
+    override fun deleteTodo(todo: Todo): Todo {
         todoDao.deleteTodos(todoEntityMapper.toEntity(todo))
+        return todo
     }
 }

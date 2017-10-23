@@ -15,7 +15,7 @@ import de.squiray.dailylist.R
 import de.squiray.dailylist.domain.entity.Todo
 import de.squiray.dailylist.domain.entity.TodoType
 import de.squiray.dailylist.presentation.presenter.DailyTodoPresenter
-import de.squiray.dailylist.presentation.ui.bottomdialog.AddTodoBottomDialog
+import de.squiray.dailylist.presentation.ui.bottomdialog.AddOrChangeTodoBottomDialog
 import de.squiray.dailylist.presentation.ui.fragment.DailyTodoFragment
 import de.squiray.dailylist.presentation.ui.view.DailyTodoView
 import de.squiray.dailylist.util.Consumer
@@ -27,7 +27,7 @@ import javax.inject.Inject
 
 
 @Activity(layout = R.layout.activity_daily_todo)
-class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Callback {
+class DailyTodoActivity : BaseActivity(), DailyTodoView, AddOrChangeTodoBottomDialog.Callback {
 
     @Inject
     lateinit var dailyTodoPresenter: DailyTodoPresenter
@@ -112,8 +112,8 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
         dailyTodoFragment().showTodos(todos)
     }
 
-    override fun showTodo(todo: Todo) {
-        dailyTodoFragment().showTodo(todo)
+    override fun addOrUpdate(todo: Todo) {
+        dailyTodoFragment().addOrUpdate(todo)
     }
 
     private fun dailyTodoFragment(): DailyTodoFragment {
@@ -121,11 +121,23 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddTodoBottomDialog.Cal
     }
 
     override fun showAddTodoDialog(type: TodoType) {
-        showDialog(AddTodoBottomDialog.newInstance(type))
+        showDialog(AddOrChangeTodoBottomDialog.newInstance(type))
+    }
+
+    override fun showChangeTodoDialog(todo: Todo) {
+        showDialog(AddOrChangeTodoBottomDialog.newInstance(todo))
     }
 
     override fun onAddTodoClicked(todo: String, type: TodoType) {
         dailyTodoPresenter.onAddNewTodo(todo, type)
+    }
+
+    override fun onDeleteTodoClicked(todo: Todo) {
+        dailyTodoPresenter.onDeleteTodoClicked(todo)
+    }
+
+    override fun onSaveTodoClicked(todo: Todo, changeTodo: String) {
+        dailyTodoPresenter.onSaveTodoClicked(todo, changeTodo)
     }
 
     override fun deleteTodo(completedTodo: Todo) {

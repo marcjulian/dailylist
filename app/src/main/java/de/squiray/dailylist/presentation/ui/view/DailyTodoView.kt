@@ -5,7 +5,8 @@ import de.squiray.dailylist.domain.entity.TodoType
 
 interface DailyTodoView : View {
     fun showTodos(todos: List<Todo>)
-    fun showTodo(todo: Todo)
+    fun addOrUpdate(todo: Todo)
     fun showAddTodoDialog(type: TodoType)
     fun deleteTodo(completedTodo: Todo)
+    fun showChangeTodoDialog(todo: Todo)
 }
