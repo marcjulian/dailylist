@@ -4,9 +4,7 @@ import de.squiray.dailylist.R
 import de.squiray.dailylist.domain.entity.Todo
 import de.squiray.dailylist.domain.entity.TodoType
 import de.squiray.dailylist.domain.usecase.NoOpResultHandler
-import de.squiray.dailylist.domain.usecase.todo.AddTodoUseCase
-import de.squiray.dailylist.domain.usecase.todo.CompleteTodoUseCase
-import de.squiray.dailylist.domain.usecase.todo.GetTodosUseCase
+import de.squiray.dailylist.domain.usecase.todo.*
 import de.squiray.dailylist.presentation.ui.view.DailyTodoView
 import de.squiray.dailylist.util.helper.SharedPreferencesHelper
 import javax.inject.Inject
@@ -17,6 +15,8 @@ class DailyTodoPresenter @Inject
 constructor(private val getTodosUseCase: GetTodosUseCase,
             private val addTodoUseCase: AddTodoUseCase,
             private val completeTodoUseCase: CompleteTodoUseCase,
+            private val deleteTodoUseCase: DeleteTodoUseCase,
+            private val updateTodoUseCase: UpdateTodoUseCase,
             private val sharedPreferencesHelper: SharedPreferencesHelper)
     : Presenter<DailyTodoView>() {
 
@@ -44,7 +44,7 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
             }
 
             override fun onSuccess(todo: Todo) {
-                view.showTodo(todo)
+                view.addOrUpdate(todo)
             }
         })
     }
@@ -70,6 +70,29 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
                 view.deleteTodo(completedTodo)
             }
         })
+    }
+
+    fun onDeleteTodoClicked(todo: Todo) {
+        deleteTodoUseCase.todo = todo
+        deleteTodoUseCase.run(object : NoOpResultHandler<Todo>() {
+            override fun onSuccess(todo: Todo) {
+                view.deleteTodo(todo)
+            }
+        })
+    }
+
+    fun onSaveTodoClicked(todo: Todo, changedTodo: String) {
+        todo.todo = changedTodo
+        updateTodoUseCase.todo = todo
+        updateTodoUseCase.run(object : NoOpResultHandler<Todo>() {
+            override fun onSuccess(todo: Todo) {
+                view.addOrUpdate(todo)
+            }
+        })
+    }
+
+    fun onTodoClicked(todo: Todo) {
+        view.showChangeTodoDialog(todo)
     }
 
 }

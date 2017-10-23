@@ -14,7 +14,8 @@
         android:layout_margin="8dp"
         android:backgroundTint="@android:color/transparent"
         android:gravity="top"
-        android:inputType="text"
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/addTodo"/>
 
     <Button
@@ -26,8 +27,34 @@
         android:enabled="false"
         android:text="@string/screen_todo_add_todo"
         android:textSize="18sp"
-        app:layout_anchorGravity="bottom|right|end"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="parent"/>
+
+
+    <Button
+        android:id="@+id/saveTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:enabled="false"
+        android:text="@string/screen_todo_save_todo"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/deleteTodo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/screen_todo_delete_todo"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/saveTodo"/>
 
 </android.support.constraint.ConstraintLayout>

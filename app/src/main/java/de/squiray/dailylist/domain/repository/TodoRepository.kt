@@ -12,5 +12,5 @@ interface TodoRepository {
 
     operator fun get(id: String): Todo
 
-    fun deleteTodo(todo: Todo)
+    fun deleteTodo(todo: Todo): Todo
 }
