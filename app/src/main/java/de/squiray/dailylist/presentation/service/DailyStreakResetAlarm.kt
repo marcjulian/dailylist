@@ -4,24 +4,24 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import de.squiray.dailylist.presentation.service.receiver.DailyStrikeResetAlarmReceiver
+import de.squiray.dailylist.presentation.service.receiver.DailyStreakResetAlarmReceiver
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
-class DailyStrikeResetAlarm @Inject constructor(context: Context) {
+class DailyStreakResetAlarm @Inject constructor(context: Context) {
 
     private val alarmMgr: AlarmManager
     private val alarmIntent: PendingIntent
 
     init {
         alarmMgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, DailyStrikeResetAlarmReceiver::class.java)
+        val intent = Intent(context, DailyStreakResetAlarmReceiver::class.java)
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
     }
 
     fun scheduleAlarm() {
-        Timber.tag("DailyStrikeResetAlarm").i("schedule alarm")
+        Timber.tag("DailyStreakResetAlarm").i("schedule alarm")
         alarmMgr.setRepeating(AlarmManager.RTC, resetTime().timeInMillis,
                 AlarmManager.INTERVAL_DAY, alarmIntent)
     }
