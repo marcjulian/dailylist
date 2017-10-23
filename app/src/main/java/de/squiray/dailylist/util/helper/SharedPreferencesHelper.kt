@@ -15,8 +15,8 @@ class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPref
 
     private val DAILY_TODO_LIMIT = "dailyTodoLimit"
     private val ADDED_DAILY_TODO_NUMBER = "addedDailyTodoNumber"
-    private val DAILY_STRIKE_COUNT = "dailyStrikeCount"
-    private val DAILY_STRIKE_INC_TODAY = "dailyStrikeSetToday"
+    private val DAILY_STREAK_COUNT = "dailyStreakCount"
+    private val DAILY_STREAK_INC_TODAY = "dailyStreakSetToday"
 
     private val sharedPreferences: SharedPreferences
             = PreferenceManager.getDefaultSharedPreferences(context)
@@ -42,6 +42,10 @@ class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPref
         sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, getAddedDailyTodoNumber().inc())
     }
 
+    fun decrementDailyTodoAdded() {
+        sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, getAddedDailyTodoNumber().dec())
+    }
+
     fun resetDailyTodoAdded() {
         sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, 0)
     }
@@ -50,28 +54,28 @@ class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPref
         return sharedPreferences.getValue(ADDED_DAILY_TODO_NUMBER, 0)!!
     }
 
-    fun incrementDailyStrikeCount() {
-        sharedPreferences.setValue(DAILY_STRIKE_COUNT, getDailyStrikeCount().inc())
+    fun incrementDailyStreakCount() {
+        sharedPreferences.setValue(DAILY_STREAK_COUNT, getDailyStrikeCount().inc())
     }
 
     fun resetDailyStrikeCount() {
-        sharedPreferences.setValue(DAILY_STRIKE_COUNT, 0)
+        sharedPreferences.setValue(DAILY_STREAK_COUNT, 0)
     }
 
     fun getDailyStrikeCount(): Int {
-        return sharedPreferences.getValue(DAILY_STRIKE_COUNT, 0)!!
+        return sharedPreferences.getValue(DAILY_STREAK_COUNT, 0)!!
     }
 
-    fun setDailyStrikeIncToday(strikeIncToday: Boolean) {
-        sharedPreferences.setValue(DAILY_STRIKE_INC_TODAY, strikeIncToday)
+    fun setDailyStreakIncToday(strikeIncToday: Boolean) {
+        sharedPreferences.setValue(DAILY_STREAK_INC_TODAY, strikeIncToday)
     }
 
-    fun hasDailyStrikeIncToday(): Boolean {
-        return sharedPreferences.getValue(DAILY_STRIKE_INC_TODAY, false)!!
+    fun hasDailyStreakIncToday(): Boolean {
+        return sharedPreferences.getValue(DAILY_STREAK_INC_TODAY, false)!!
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences, key: String) {
-        if (key == DAILY_STRIKE_COUNT) {
+        if (key == DAILY_STREAK_COUNT) {
             val dailyStrikeCount = getDailyStrikeCount()
             for (consumer in dailyStrikeChangedListeners.keys) {
                 consumer.accept(dailyStrikeCount)

@@ -63,9 +63,9 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         completeTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(completedTodo: Todo) {
                 if (completedTodo.todoType == TodoType.DAILY_TO_DO
-                        && !sharedPreferencesHelper.hasDailyStrikeIncToday()) {
-                    sharedPreferencesHelper.incrementDailyStrikeCount()
-                    sharedPreferencesHelper.setDailyStrikeIncToday(true)
+                        && !sharedPreferencesHelper.hasDailyStreakIncToday()) {
+                    sharedPreferencesHelper.incrementDailyStreakCount()
+                    sharedPreferencesHelper.setDailyStreakIncToday(true)
                 }
                 view.deleteTodo(completedTodo)
             }
@@ -77,6 +77,9 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         deleteTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(todo: Todo) {
                 view.deleteTodo(todo)
+                if (todo.todoType == TodoType.DAILY_TO_DO) {
+                    sharedPreferencesHelper.decrementDailyTodoAdded()
+                }
             }
         })
     }
