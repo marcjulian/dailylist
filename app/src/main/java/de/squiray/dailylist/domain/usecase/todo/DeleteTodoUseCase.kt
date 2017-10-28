@@ -12,10 +12,14 @@ class DeleteTodoUseCase @Inject constructor(postExecutionThread: PostExecutionTh
                                             private val todoRepository: TodoRepository)
     : UseCase<Todo>(postExecutionThread, threadExecutor) {
 
+    private val TAG = DeleteTodoUseCase::class.java.name
+
     lateinit var todo: Todo
 
     override fun execute(): Todo {
         return todoRepository.deleteTodo(todo)
     }
 
+
+    override fun tag(): String = TAG
 }

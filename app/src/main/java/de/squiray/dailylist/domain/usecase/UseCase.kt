@@ -23,7 +23,7 @@ abstract class UseCase<T> constructor(private val postExecutionThread: PostExecu
             val id = executionId.getAndIncrement()
             var failed = true
             try {
-                timber.log.Timber.tag("UseCase").d("started %x", id)
+                timber.log.Timber.tag(tag()).d("started %x", id)
                 val result = execute()
                 failed = false
                 timber.log.Timber.tag("UseCase").d("finished %x", id)
@@ -61,5 +61,7 @@ abstract class UseCase<T> constructor(private val postExecutionThread: PostExecu
     }
 
     protected abstract fun execute(): T
+
+    protected abstract fun tag(): String
 
 }
