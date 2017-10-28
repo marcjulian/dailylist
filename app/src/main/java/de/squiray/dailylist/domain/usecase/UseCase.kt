@@ -26,11 +26,11 @@ abstract class UseCase<T> constructor(private val postExecutionThread: PostExecu
                 timber.log.Timber.tag(tag()).d("started %x", id)
                 val result = execute()
                 failed = false
-                timber.log.Timber.tag("UseCase").d("finished %x", id)
+                timber.log.Timber.tag(tag()).d("finished %x", id)
                 return@Callable result
             } finally {
                 if (failed) {
-                    timber.log.Timber.tag("DeleteVaultUseCase").d("failed %x", id)
+                    timber.log.Timber.tag(tag()).d("failed %x", id)
                 }
             }
         }).subscribeOn(io.reactivex.schedulers.Schedulers.from(threadExecutor))

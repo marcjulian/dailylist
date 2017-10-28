@@ -12,7 +12,7 @@ class UpdateTodoUseCase @Inject constructor(postExecutionThread: PostExecutionTh
                                             private val todoRepository: TodoRepository)
     : UseCase<Todo>(postExecutionThread, threadExecutor) {
 
-    private val TAG = UpdateTodoUseCase::class.java.name
+    private val TAG = UpdateTodoUseCase::class.java.simpleName
 
     lateinit var todo: Todo
 

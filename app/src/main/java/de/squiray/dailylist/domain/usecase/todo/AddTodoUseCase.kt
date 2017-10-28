@@ -13,7 +13,7 @@ class AddTodoUseCase @Inject constructor(postExecThread: PostExecutionThread,
                                          private val todoRepository: TodoRepository) :
         UseCase<Todo>(postExecThread, threadExec) {
 
-    private val TAG = AddTodoUseCase::class.java.name
+    private val TAG = AddTodoUseCase::class.java.simpleName
 
     lateinit var todo: String
     lateinit var type: TodoType
