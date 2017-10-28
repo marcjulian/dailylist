@@ -39,7 +39,7 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddOrChangeTodoBottomDi
         setupToolbar()
         showDailyTodoFragmentFor(TodoType.DAILY_TO_DO)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        sharedPreferencesHelper.addDailyStrikeListener(onDailyStrikeCountChanged)
+        sharedPreferencesHelper.addDailyStreakListener(onDailyStrikeCountChanged)
     }
 
     override fun getMenuResource(): Int {
@@ -48,7 +48,7 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddOrChangeTodoBottomDi
 
     override fun onCreatingOptionsMenu(menu: Menu) {
         val strikeCountItem = menu.findItem(R.id.action_strike_count)
-        strikeCountItem.icon = buildStrikeCounterDrawable(sharedPreferencesHelper.getDailyStrikeCount())
+        strikeCountItem.icon = buildStrikeCounterDrawable(sharedPreferencesHelper.getDailyStreak())
     }
 
     private fun buildStrikeCounterDrawable(counter: Int): Drawable {
@@ -87,7 +87,7 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddOrChangeTodoBottomDi
         menu.findItem(R.id.action_strike_count).isVisible =
                 dailyTodoFragment().todoType == TodoType.DAILY_TO_DO
 
-        if (sharedPreferencesHelper.getDailyStrikeCount() > 0) {
+        if (sharedPreferencesHelper.getDailyStreak() > 0) {
             menu.findItem(R.id.action_strike).icon.setColorFilter(
                     ContextCompat.getColor(this, R.color.colorOrange),
                     PorterDuff.Mode.SRC_ATOP)

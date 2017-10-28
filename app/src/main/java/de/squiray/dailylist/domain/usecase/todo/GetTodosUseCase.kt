@@ -13,6 +13,8 @@ class GetTodosUseCase @Inject constructor(postExecThread: PostExecutionThread,
                                           private val todoRepository: TodoRepository) :
         UseCase<List<Todo>>(postExecThread, threadExec) {
 
+    private val TAG = GetTodosUseCase::class.java.simpleName
+
     lateinit var type: TodoType
 
     override fun execute(): List<Todo> {
@@ -20,4 +22,6 @@ class GetTodosUseCase @Inject constructor(postExecThread: PostExecutionThread,
         return allTodos.filter { todo -> todo.todoType == type && !todo.completed }
     }
 
+
+    override fun tag(): String = TAG
 }

@@ -11,10 +11,10 @@ class DailyStreakResetAlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val sharedPreferencesHelper = SharedPreferencesHelper(context)
         Timber.tag("DailyStreakResetAlarmReceiver").i("reset daily streak inc today")
-        if (!sharedPreferencesHelper.hasDailyStreakIncToday()) {
-            sharedPreferencesHelper.resetDailyStrikeCount()
+        if (!sharedPreferencesHelper.isDailyStreakIncrementedToday()) {
+            sharedPreferencesHelper.resetDailyStreakCount()
         }
-        sharedPreferencesHelper.setDailyStreakIncToday(false)
+        sharedPreferencesHelper.setDailyStreakIncrementedToday(false)
     }
 
 }

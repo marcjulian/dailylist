@@ -11,11 +11,10 @@ import javax.inject.Inject
 
 class DailyTodoLimitResetAlarm @Inject constructor(context: Context) {
 
-    private val alarmMgr: AlarmManager
+    private val alarmMgr: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private val alarmIntent: PendingIntent
 
     init {
-        alarmMgr = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, DailyTodoLimitResetAlarmReceiver::class.java)
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
     }

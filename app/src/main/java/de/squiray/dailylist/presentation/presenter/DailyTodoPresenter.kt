@@ -39,7 +39,7 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
 
             override fun onFinished() {
                 if (type == TodoType.DAILY_TO_DO) {
-                    sharedPreferencesHelper.incrementDailyTodoAdded()
+                    sharedPreferencesHelper.addDailyTodo()
                 }
             }
 
@@ -62,12 +62,15 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         completeTodoUseCase.todo = todo
         completeTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(completedTodo: Todo) {
-                if (completedTodo.todoType == TodoType.DAILY_TO_DO
-                        && !sharedPreferencesHelper.hasDailyStreakIncToday()) {
-                    sharedPreferencesHelper.incrementDailyStreakCount()
-                    sharedPreferencesHelper.setDailyStreakIncToday(true)
-                }
+                onDailyTodo(completedTodo)
                 view.deleteTodo(completedTodo)
+            }
+
+            fun onDailyTodo(completedTodo: Todo) {
+                if (completedTodo.todoType == TodoType.DAILY_TO_DO
+                        && !sharedPreferencesHelper.isDailyStreakIncrementedToday()) {
+                    sharedPreferencesHelper.updateDailyStreakCount()
+                }
             }
         })
     }
@@ -76,9 +79,13 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         deleteTodoUseCase.todo = todo
         deleteTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(todo: Todo) {
+                onDailyTodo(todo)
                 view.deleteTodo(todo)
+            }
+
+            fun onDailyTodo(todo: Todo) {
                 if (todo.todoType == TodoType.DAILY_TO_DO) {
-                    sharedPreferencesHelper.decrementDailyTodoAdded()
+                    sharedPreferencesHelper.removeDailyTodo()
                 }
             }
         })
