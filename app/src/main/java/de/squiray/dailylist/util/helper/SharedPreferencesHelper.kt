@@ -7,6 +7,7 @@ import de.squiray.dailylist.util.Consumer
 import de.squiray.dailylist.util.DailyTodoLimit
 import de.squiray.dailylist.util.extension.SharedPreferenceExtension.getValue
 import de.squiray.dailylist.util.extension.SharedPreferenceExtension.setValue
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -18,19 +19,21 @@ class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPref
     private val DAILY_STREAK_COUNT = "dailyStreakCount"
     private val DAILY_STREAK_INC_TODAY = "dailyStreakSetToday"
 
+    private val TAG = SharedPreferencesHelper::class.java.name
+
     private val sharedPreferences: SharedPreferences
             = PreferenceManager.getDefaultSharedPreferences(context)
 
-    private val dailyStrikeChangedListeners = WeakHashMap<Consumer<Int>, Void>()
+    private val dailyStreakChangedListeners = WeakHashMap<Consumer<Int>, Void>()
 
 
     init {
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
     }
 
-    fun addDailyStrikeListener(listener: Consumer<Int>) {
-        dailyStrikeChangedListeners.put(listener, null)
-        listener.accept(getDailyStrikeCount())
+    fun addDailyStreakListener(listener: Consumer<Int>) {
+        dailyStreakChangedListeners.put(listener, null)
+        listener.accept(getDailyStreak())
     }
 
     fun getDailyTodoLimit(): DailyTodoLimit {
@@ -38,12 +41,14 @@ class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPref
                 sharedPreferences.getValue(DAILY_TODO_LIMIT, DailyTodoLimit.ONE_DAILY_TODO.name)!!)
     }
 
-    fun incrementDailyTodoAdded() {
+    fun addDailyTodo() {
         sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, getAddedDailyTodoNumber().inc())
     }
 
-    fun decrementDailyTodoAdded() {
-        sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, getAddedDailyTodoNumber().dec())
+    fun removeDailyTodo() {
+        if (getAddedDailyTodoNumber() > 0) {
+            sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, getAddedDailyTodoNumber().dec())
+        }
     }
 
     fun resetDailyTodoAdded() {
@@ -54,30 +59,39 @@ class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPref
         return sharedPreferences.getValue(ADDED_DAILY_TODO_NUMBER, 0)!!
     }
 
-    fun incrementDailyStreakCount() {
-        sharedPreferences.setValue(DAILY_STREAK_COUNT, getDailyStrikeCount().inc())
+    fun updateDailyStreakCount() {
+        incrementDailyStreakCount()
+        setDailyStreakIncrementedToday(true)
     }
 
-    fun resetDailyStrikeCount() {
+    fun incrementDailyStreakCount() {
+        sharedPreferences.setValue(DAILY_STREAK_COUNT, getDailyStreak().inc())
+    }
+
+    fun resetDailyStreakCount() {
+        Timber.tag(TAG).d("reset daily streak count")
         sharedPreferences.setValue(DAILY_STREAK_COUNT, 0)
     }
 
-    fun getDailyStrikeCount(): Int {
+    fun getDailyStreak(): Int {
         return sharedPreferences.getValue(DAILY_STREAK_COUNT, 0)!!
     }
 
-    fun setDailyStreakIncToday(strikeIncToday: Boolean) {
-        sharedPreferences.setValue(DAILY_STREAK_INC_TODAY, strikeIncToday)
+    fun setDailyStreakIncrementedToday(isStreakIncremented: Boolean) {
+        Timber.tag(TAG).d("set daily streak incremented today " + isStreakIncremented)
+        sharedPreferences.setValue(DAILY_STREAK_INC_TODAY, isStreakIncremented)
     }
 
-    fun hasDailyStreakIncToday(): Boolean {
-        return sharedPreferences.getValue(DAILY_STREAK_INC_TODAY, false)!!
+    fun isDailyStreakIncrementedToday(): Boolean {
+        val isDailyStreakIncrementedToday = sharedPreferences.getValue(DAILY_STREAK_INC_TODAY, false)!!
+        Timber.tag(TAG).d("daily streak is incremented today " + isDailyStreakIncrementedToday)
+        return isDailyStreakIncrementedToday
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences, key: String) {
         if (key == DAILY_STREAK_COUNT) {
-            val dailyStrikeCount = getDailyStrikeCount()
-            for (consumer in dailyStrikeChangedListeners.keys) {
+            val dailyStrikeCount = getDailyStreak()
+            for (consumer in dailyStreakChangedListeners.keys) {
                 consumer.accept(dailyStrikeCount)
             }
         }
