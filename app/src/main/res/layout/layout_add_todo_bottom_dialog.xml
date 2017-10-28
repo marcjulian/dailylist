@@ -11,50 +11,56 @@
         android:id="@+id/addTodoText"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="8dp"
         android:backgroundTint="@android:color/transparent"
         android:gravity="top"
         android:imeOptions="actionDone"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/addTodo"/>
+        android:inputType="text"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomToolbar"/>
 
-    <Button
-        android:id="@+id/addTodo"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/bottomToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:enabled="false"
-        android:text="@string/screen_todo_add_todo"
-        android:textSize="18sp"
-        android:visibility="gone"
+        android:background="@color/colorBottomToolbar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"/>
+        app:layout_constraintRight_toLeftOf="parent">
+
+        <Button
+            android:id="@+id/addTodo"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/screen_todo_add_todo"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"/>
 
 
-    <Button
-        android:id="@+id/saveTodo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:enabled="false"
-        android:text="@string/screen_todo_save_todo"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"/>
+        <Button
+            android:id="@+id/saveTodo"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/screen_todo_save_todo"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"/>
 
-    <Button
-        android:id="@+id/deleteTodo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/screen_todo_delete_todo"
-        android:textSize="18sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/saveTodo"/>
+        <Button
+            android:id="@+id/deleteTodo"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/screen_todo_delete_todo"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/saveTodo"/>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

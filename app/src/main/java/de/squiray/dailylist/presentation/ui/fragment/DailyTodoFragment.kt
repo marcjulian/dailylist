@@ -71,7 +71,6 @@ class DailyTodoFragment : BaseFragment() {
 
     private val todoAdapterCallback = object : TodoAdapter.Callback {
         override fun onTodoClicked(todo: Todo) {
-            // TODO do something, maybe edit todo
             dailyTodoPresenter.onTodoClicked(todo)
         }
 

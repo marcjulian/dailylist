@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.View.VISIBLE
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
@@ -12,6 +13,7 @@ import de.squiray.dailylist.R
 import de.squiray.dailylist.domain.entity.Todo
 import de.squiray.dailylist.domain.entity.TodoType
 import de.squiray.dailylist.util.annotation.BottomSheetDialog
+
 
 @BottomSheetDialog(layout = R.layout.layout_add_todo_bottom_dialog)
 class AddOrChangeTodoBottomDialog : BaseBottomDialog<AddOrChangeTodoBottomDialog.Callback>() {
@@ -48,6 +50,11 @@ class AddOrChangeTodoBottomDialog : BaseBottomDialog<AddOrChangeTodoBottomDialog
         fun onAddTodoClicked(todo: String, type: TodoType)
         fun onDeleteTodoClicked(todo: Todo)
         fun onSaveTodoClicked(todo: Todo, changeTodo: String)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        dialog.window.setSoftInputMode(SOFT_INPUT_STATE_VISIBLE)
     }
 
     lateinit var addTodoText: EditText
