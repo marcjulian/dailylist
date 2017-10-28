@@ -1,6 +1,7 @@
 package de.squiray.dailylist.presentation.ui.bottomdialog
 
 import android.os.Bundle
+import android.support.design.widget.BottomSheetBehavior
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -15,7 +16,8 @@ import de.squiray.dailylist.domain.entity.TodoType
 import de.squiray.dailylist.util.annotation.BottomSheetDialog
 
 
-@BottomSheetDialog(layout = R.layout.layout_add_todo_bottom_dialog)
+@BottomSheetDialog(layout = R.layout.layout_add_todo_bottom_dialog,
+        state = BottomSheetBehavior.STATE_EXPANDED)
 class AddOrChangeTodoBottomDialog : BaseBottomDialog<AddOrChangeTodoBottomDialog.Callback>() {
     companion object {
         private val ARG_TODO_TYPE: String = "todoType"
@@ -73,6 +75,15 @@ class AddOrChangeTodoBottomDialog : BaseBottomDialog<AddOrChangeTodoBottomDialog
 
         saveTodo.visibility = VISIBLE
         deleteTodo.visibility = VISIBLE
+
+        addTodoText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE && saveTodo.isEnabled) {
+                callback.onSaveTodoClicked(todo, addTodoText.text.toString())
+                dismiss()
+            }
+            false
+        }
+
         addTodoText.setText(todo.todo)
         addTodoText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
@@ -103,10 +114,9 @@ class AddOrChangeTodoBottomDialog : BaseBottomDialog<AddOrChangeTodoBottomDialog
         addTodo.visibility = VISIBLE
 
         addTodoText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_DONE && addTodo.isEnabled) {
                 callback.onAddTodoClicked(addTodoText.text.toString(), todoType)
                 dismiss()
-                true
             }
             false
         }

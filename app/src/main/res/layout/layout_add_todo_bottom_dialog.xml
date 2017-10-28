@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/addTodoText"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="500dp"
         android:backgroundTint="@android:color/transparent"
         android:gravity="top"
         android:imeOptions="actionDone"
