@@ -1,7 +1,9 @@
 package de.squiray.dailylist.presentation.ui.fragment
 
+import android.app.Activity
 import android.app.Fragment
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,8 +32,19 @@ abstract class BaseFragment : Fragment() {
         onViewCreatedCalled = true
     }
 
+    override fun onAttach(activity: Activity?) {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            logLifecycle("onAttach(activity)")
+            AndroidInjection.inject(this)
+        }
+        super.onAttach(activity)
+    }
+
     override fun onAttach(context: Context?) {
-        AndroidInjection.inject(this)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            logLifecycle("onAttach(context)")
+            AndroidInjection.inject(this)
+        }
         super.onAttach(context)
     }
 
