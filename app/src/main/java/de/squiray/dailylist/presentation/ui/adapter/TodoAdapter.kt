@@ -7,6 +7,7 @@ import de.squiray.dailylist.R
 import de.squiray.dailylist.domain.entity.Todo
 import de.squiray.dailylist.util.extension.inflate
 import kotlinx.android.synthetic.main.item_todo.view.*
+import java.util.*
 
 
 class TodoAdapter(private val items: MutableList<Todo>,
@@ -41,7 +42,7 @@ class TodoAdapter(private val items: MutableList<Todo>,
     }
 
     fun add(todo: Todo) {
-        items.add(todo)
+        items.add(0, todo)
         notifyItemInserted(positionOf(todo))
     }
 

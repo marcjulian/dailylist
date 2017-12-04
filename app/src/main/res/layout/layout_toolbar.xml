@@ -8,4 +8,4 @@
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
     app:layout_collapseMode="pin"
-    app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar"/>
+    app:popupTheme="@style/Theme.AppCompat.NoActionBar"/>

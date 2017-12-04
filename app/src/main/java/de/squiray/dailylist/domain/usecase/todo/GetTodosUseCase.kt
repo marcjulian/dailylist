@@ -18,8 +18,10 @@ class GetTodosUseCase @Inject constructor(postExecThread: PostExecutionThread,
     lateinit var type: TodoType
 
     override fun execute(): List<Todo> {
-        val allTodos : List<Todo> = todoRepository.all
-        return allTodos.filter { todo -> todo.todoType == type && !todo.completed }
+        val allTodos: List<Todo> = todoRepository.all
+        return allTodos
+                .asReversed()
+                .filter { todo -> todo.todoType == type && !todo.completed }
     }
 
 
