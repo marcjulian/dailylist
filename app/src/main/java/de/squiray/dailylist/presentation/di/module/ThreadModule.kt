@@ -9,7 +9,7 @@ import de.squiray.dailylist.util.thread.UIThread
 import javax.inject.Singleton
 
 @Module
-abstract class ThreadModule {
+class ThreadModule {
 
     @Provides
     @Singleton
