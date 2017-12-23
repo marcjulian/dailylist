@@ -12,23 +12,23 @@ import java.util.*
 import javax.inject.Inject
 
 
-class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListener {
-
-    private val DAILY_TODO_LIMIT = "dailyTodoLimit"
-    private val ADDED_DAILY_TODO_NUMBER = "addedDailyTodoNumber"
-    private val DAILY_STREAK_COUNT = "dailyStreakCount"
-    private val DAILY_STREAK_INC_TODAY = "dailyStreakSetToday"
-
-    private val TAG = SharedPreferencesHelper::class.java.name
+class SharedPreferencesHelper @Inject constructor(
+        context: Context
+) : SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val sharedPreferences: SharedPreferences
             = PreferenceManager.getDefaultSharedPreferences(context)
 
     private val dailyStreakChangedListeners = WeakHashMap<Consumer<Int>, Void>()
-
+    private val dailyTodoNotificationChangedListeners = WeakHashMap<Consumer<Boolean>, Void>()
 
     init {
         sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    fun addDailyTodoNotificationListener(listener: Consumer<Boolean>) {
+        dailyTodoNotificationChangedListeners.put(listener, null)
+        listener.accept(isDailyTodoNotificationEnabled())
     }
 
     fun addDailyStreakListener(listener: Consumer<Int>) {
@@ -88,13 +88,30 @@ class SharedPreferencesHelper @Inject constructor(context: Context) : SharedPref
         return isDailyStreakIncrementedToday
     }
 
+    fun isDailyTodoNotificationEnabled(): Boolean {
+        return sharedPreferences.getValue(DAILY_TODO_NOTIFICATION, false)!!
+    }
+
     override fun onSharedPreferenceChanged(p0: SharedPreferences, key: String) {
         if (key == DAILY_STREAK_COUNT) {
             val dailyStrikeCount = getDailyStreak()
             for (consumer in dailyStreakChangedListeners.keys) {
                 consumer.accept(dailyStrikeCount)
             }
+        } else if (key == DAILY_TODO_NOTIFICATION) {
+            val isEnabled = isDailyTodoNotificationEnabled()
+            for (consumer in dailyTodoNotificationChangedListeners.keys) {
+                consumer.accept(isEnabled)
+            }
         }
     }
 
+    companion object {
+        private val TAG = SharedPreferencesHelper::class.java.canonicalName
+        private val DAILY_TODO_LIMIT = "dailyTodoLimit"
+        private val ADDED_DAILY_TODO_NUMBER = "addedDailyTodoNumber"
+        private val DAILY_STREAK_COUNT = "dailyStreakCount"
+        private val DAILY_STREAK_INC_TODAY = "dailyStreakSetToday"
+        private val DAILY_TODO_NOTIFICATION = "dailyTodoNotification"
+    }
 }

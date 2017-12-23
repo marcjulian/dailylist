@@ -11,6 +11,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasFragmentInjector
+import dagger.android.support.DaggerAppCompatActivity
 import de.squiray.dailylist.R
 import de.squiray.dailylist.presentation.presenter.Presenter
 import de.squiray.dailylist.presentation.ui.view.View
@@ -20,20 +21,16 @@ import java.lang.String.format
 import javax.inject.Inject
 
 
-abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
+abstract class BaseActivity : DaggerAppCompatActivity(), View {
 
     private val NO_MENU = -1
     private val ACTIVE_DIALOG = "activeDialog"
-
-    @Inject
-    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
     private var currentDialog: DialogFragment? = null
 
     private var presenter: Presenter<*>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(contentLayout())
 
@@ -105,8 +102,6 @@ abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, View {
     open fun onMenuItemSelected(itemId: Int): Boolean {
         return false
     }
-
-    override fun fragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
 
     open fun setupView() {
 
