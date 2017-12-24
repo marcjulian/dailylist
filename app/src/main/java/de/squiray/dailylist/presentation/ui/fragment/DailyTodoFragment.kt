@@ -62,6 +62,7 @@ class DailyTodoFragment : BaseFragment() {
     }
 
     fun showTodos(todos: List<Todo>) {
+        todoAdapter.clear()
         todoAdapter.addAll(todos)
     }
 
