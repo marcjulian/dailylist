@@ -41,11 +41,11 @@ class SharedPreferencesHelper @Inject constructor(
                 sharedPreferences.getValue(DAILY_TODO_LIMIT, DailyTodoLimit.ONE_DAILY_TODO.name)!!)
     }
 
-    fun addDailyTodo() {
+    fun addedDailyTodo() {
         sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, getAddedDailyTodoNumber().inc())
     }
 
-    fun removeDailyTodo() {
+    fun removedDailyTodo() {
         if (getAddedDailyTodoNumber() > 0) {
             sharedPreferences.setValue(ADDED_DAILY_TODO_NUMBER, getAddedDailyTodoNumber().dec())
         }
@@ -60,8 +60,10 @@ class SharedPreferencesHelper @Inject constructor(
     }
 
     fun updateDailyStreakCount() {
-        incrementDailyStreakCount()
-        setDailyStreakIncrementedToday(true)
+        if(!isDailyStreakIncrementedToday()) {
+            incrementDailyStreakCount()
+            setDailyStreakIncrementedToday(true)
+        }
     }
 
     fun incrementDailyStreakCount() {

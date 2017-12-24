@@ -41,6 +41,10 @@ class TodoAdapter(private val items: MutableList<Todo>,
         notifyDataSetChanged()
     }
 
+    fun clear() {
+        items.clear()
+    }
+
     fun add(todo: Todo) {
         items.add(0, todo)
         notifyItemInserted(positionOf(todo))
