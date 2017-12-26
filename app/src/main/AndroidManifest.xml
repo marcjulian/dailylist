@@ -29,6 +29,8 @@
 				android:screenOrientation="portrait"/>
 
 		<service android:name=".presentation.service.DailyListService"/>
+		<service android:name=".presentation.service.AddDailyTodoService"/>
+		<service android:name=".presentation.service.CompleteDailyTodoService"/>
 
 		<receiver
 				android:name="de.squiray.dailylist.presentation.service.receiver.DailyTodoLimitResetAlarmReceiver"/>

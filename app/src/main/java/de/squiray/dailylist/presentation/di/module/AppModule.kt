@@ -5,6 +5,8 @@ import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import de.squiray.dailylist.presentation.service.AddDailyTodoService
+import de.squiray.dailylist.presentation.service.CompleteDailyTodoService
 import de.squiray.dailylist.presentation.service.DailyListService
 
 @Module
@@ -15,4 +17,10 @@ abstract class AppModule {
 
     @ContributesAndroidInjector
     abstract fun contributeDailyListServiceInjector(): DailyListService
+
+    @ContributesAndroidInjector
+    abstract fun contributeAddDailyTodoService(): AddDailyTodoService
+
+    @ContributesAndroidInjector
+    abstract fun contributeCompleteDailyTodoService(): CompleteDailyTodoService
 }

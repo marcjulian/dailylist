@@ -27,15 +27,11 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
     }
 
     fun onAddTodoClicked(type: TodoType) {
-        if (type == TodoType.DAILY_TO_DO && hasDailyLimitReached()) {
+        if (type == TodoType.DAILY_TO_DO && sharedPreferencesHelper.hasDailyTodoLimitExceeded()) {
             view.showMessage(R.string.screen_daily_todo_limit_reached)
             return
         }
         view.showAddTodoDialog(type)
-    }
-
-    private fun hasDailyLimitReached(): Boolean {
-        return sharedPreferencesHelper.getAddedDailyTodoNumber() >= sharedPreferencesHelper.getDailyTodoLimit().limit
     }
 
     fun onAddNewTodo(todo: String, type: TodoType) {

@@ -59,6 +59,9 @@ class SharedPreferencesHelper @Inject constructor(
         return sharedPreferences.getValue(ADDED_DAILY_TODO_NUMBER, 0)!!
     }
 
+    fun hasDailyTodoLimitExceeded(): Boolean =
+            getAddedDailyTodoNumber() >= getDailyTodoLimit().limit
+
     fun updateDailyStreakCount() {
         if(!isDailyStreakIncrementedToday()) {
             incrementDailyStreakCount()
@@ -116,4 +119,5 @@ class SharedPreferencesHelper @Inject constructor(
         private val DAILY_STREAK_INC_TODAY = "dailyStreakSetToday"
         private val DAILY_TODO_NOTIFICATION = "dailyTodoNotification"
     }
+
 }

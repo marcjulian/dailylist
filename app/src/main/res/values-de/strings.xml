@@ -28,4 +28,18 @@
     <string name="daily_limit_5">5 Todos täglich</string>
     <string name="daily_limit_3">3 Todos täglich</string>
     <string name="daily_limit_2">2 Todos täglich</string>
+	<string name="screen_settings_daily_todo_notification_title">Tägliche Todo Notifikation</string>
+	<string name="screen_settings_daily_todo_notification_summary">Hinzufügen und Abschließen von täglichen Todos in deiner Notifikationsleiste</string>
+	<string name="notification_add_daily_todo_title">Hinzufügen eines Todos</string>
+	<string name="notification_add_daily_todo_text">Gib ein Todo ein</string>
+	<string name="notification_add_daily_todo_input_text">Tippe Todo</string>
+	<string name="notification_add_daily_todo_action_text">Hinzufügen</string>
+	<string name="notification_complete_daily_todo_title">Abschließen eines Todos</string>
+	<string name="notification_complete_daily_todo_action">Abschließen</string>
+	<string name="notification_completed_today_title">Abgeschlossen</string>
+	<string name="notification_completed_today_text">Großartig du hast deine Todos abgeschlossen</string>
+	<string name="notification_satisfied_daily_title">Mach mehr</string>
+	<string name="notification_satisfied_daily_do_more_action">Mach mehr</string>
+	<string name="notification_satisfied_daily_satisfied_action">Zufrieden</string>
+	<string name="notification_satisfied_daily_text">Mache mehr jeden Tag</string>
 </resources>
