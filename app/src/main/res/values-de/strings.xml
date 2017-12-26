@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Dailylist</string>
+	<string name="app_name">Dailylist</string>
 
-    <string name="nav_title_daily_todo">Täglich</string>
-    <string name="nav_title_goal">Ziele</string>
-    <string name="nav_title_fear">Ängste</string>
+	<string name="nav_title_daily_todo">Täglich</string>
+	<string name="nav_title_goal">Ziele</string>
+	<string name="nav_title_fear">Befürchtungen</string>
 
-    <string name="screen_todo_add_todo">Hinzufügen</string>
-    <string name="screen_todo_save_todo">Speichern</string>
-    <string name="screen_todo_delete_todo">Löschen</string>
-    <string name="screen_todo_add_todo_daily_hint">Neue tägliche Todo</string>
-    <string name="screen_todo_add_todo_fear_hint">Neue Angst</string>
-    <string name="screen_todo_add_todo_goal_hint">Neues Ziel</string>
+	<string name="screen_todo_add_todo">Hinzufügen</string>
+	<string name="screen_todo_save_todo">Speichern</string>
+	<string name="screen_todo_delete_todo">Löschen</string>
+	<string name="screen_todo_add_todo_daily_hint">Neue tägliche Todo</string>
+	<string name="screen_todo_add_todo_fear_hint">Neue Befürchtung</string>
+	<string name="screen_todo_add_todo_goal_hint">Neues Ziel</string>
 
-    <string name="screen_daily_todo_limit_reached">Tägliches Todo Limit aufgebraucht</string>
+	<string name="screen_daily_todo_limit_reached">Tägliches Todo Limit aufgebraucht</string>
 
-    <string name="screen_settings_title">Einstellungen</string>
-    <string name="screen_settings_section_version">Version</string>
-    <string name="screen_settings_section_general">Allgemein</string>
-    <string name="screen_settings_daily_limit">Tägliches Limit</string>
+	<string name="screen_settings_title">Einstellungen</string>
+	<string name="screen_settings_section_version">Version</string>
+	<string name="screen_settings_section_general">Allgemein</string>
+	<string name="screen_settings_daily_limit">Tägliches Limit</string>
 
+	<string name="screen_strike_title">Streak</string>
+	<string name="screen_strike_count_title">Streakanzahl</string>
 
-    <string name="screen_strike_title">Streak</string>
-    <string name="screen_strike_count_title">Streakanzahl</string>
-
-    <string name="daily_limit_1">1 Todo täglich</string>
-    <string name="daily_limit_5">5 Todos täglich</string>
-    <string name="daily_limit_3">3 Todos täglich</string>
-    <string name="daily_limit_2">2 Todos täglich</string>
+	<string name="daily_limit_1">1 Todo täglich</string>
+	<string name="daily_limit_5">5 Todos täglich</string>
+	<string name="daily_limit_3">3 Todos täglich</string>
+	<string name="daily_limit_2">2 Todos täglich</string>
 	<string name="screen_settings_daily_todo_notification_title">Tägliche Todo Notifikation</string>
 	<string name="screen_settings_daily_todo_notification_summary">Hinzufügen und Abschließen von täglichen Todos in deiner Notifikationsleiste</string>
 	<string name="notification_add_daily_todo_title">Hinzufügen eines Todos</string>
