@@ -1,17 +1,12 @@
 package de.squiray.dailylist.presentation.ui.fragment
 
-import android.app.Activity
-import android.app.Fragment
-import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dagger.android.AndroidInjection
 import timber.log.Timber
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : DaggerBaseFragment() {
 
     private var created: Boolean = false
     private var onViewCreatedCalled: Boolean = false
@@ -30,22 +25,6 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         logLifecycle("onViewCreated")
         onViewCreatedCalled = true
-    }
-
-    override fun onAttach(activity: Activity?) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            logLifecycle("onAttach(activity)")
-            AndroidInjection.inject(this)
-        }
-        super.onAttach(activity)
-    }
-
-    override fun onAttach(context: Context?) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            logLifecycle("onAttach(context)")
-            AndroidInjection.inject(this)
-        }
-        super.onAttach(context)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

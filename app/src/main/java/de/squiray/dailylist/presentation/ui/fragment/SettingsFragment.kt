@@ -23,7 +23,7 @@ class SettingsFragment : PreferenceFragment() {
         val preference = findPreference(APP_VERSION_ITEM_KEY)
         val versionName = SpannableString(BuildConfig.VERSION_NAME)
         versionName.setSpan( //
-                ForegroundColorSpan(ContextCompat.getColor(activity, R.color.textLight)), //
+                ForegroundColorSpan(ContextCompat.getColor(activity, R.color.colorPrimaryDark)), //
                 0, versionName.length, 0)
         preference.summary = versionName
     }

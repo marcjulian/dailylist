@@ -1,29 +1,49 @@
 <resources>
-    <string name="app_name">Dailylist</string>
+	<string name="app_name">Dailylist</string>
 
-    <string name="nav_title_daily_todo">Daily</string>
-    <string name="nav_title_fear">Fear</string>
-    <string name="nav_title_goal">Goal</string>
+	<string name="nav_title_daily_todo">Daily</string>
+	<string name="nav_title_fear">Fear</string>
+	<string name="nav_title_goal">Goal</string>
 
-    <string name="screen_todo_add_todo">Add</string>
-    <string name="screen_todo_save_todo">Save</string>
-    <string name="screen_todo_delete_todo">Delete</string>
-    <string name="screen_todo_add_todo_daily_hint">Add a daily todo</string>
-    <string name="screen_todo_add_todo_fear_hint">Add a fear</string>
-    <string name="screen_todo_add_todo_goal_hint">Add a goal</string>
+	<string name="screen_todo_add_todo">Add</string>
+	<string name="screen_todo_save_todo">Save</string>
+	<string name="screen_todo_delete_todo">Delete</string>
+	<string name="screen_todo_add_todo_daily_hint">Add a daily todo</string>
+	<string name="screen_todo_add_todo_fear_hint">Add a fear</string>
+	<string name="screen_todo_add_todo_goal_hint">Add a goal</string>
 
+	<string name="screen_strike_title">Streak</string>
+	<string name="screen_strike_count_title">Streak count</string>
+	<string name="screen_daily_todo_limit_reached">Daily todo limit exceeded</string>
 
-    <string name="screen_strike_title">Streak</string>
-    <string name="screen_strike_count_title">Streak count</string>
-    <string name="screen_daily_todo_limit_reached">Daily todo limit exceeded</string>
-    <string name="screen_settings_title">Settings</string>
+	<!-- settings -->
+	<string name="screen_settings_title">Settings</string>
+	<string name="screen_settings_section_version">Version</string>
+	<string name="screen_settings_section_general">General</string>
+	<string name="screen_settings_daily_limit">Daily limit</string>
+	<string name="screen_settings_daily_todo_notification_title">Daily Todo Notification</string>
+	<string name="screen_settings_daily_todo_notification_summary">Add and complete daily todos from your notification bar</string>
 
-    <string name="screen_settings_section_version">Version</string>
-    <string name="screen_settings_section_general">General</string>
-    <string name="screen_settings_daily_limit">Daily limit</string>
+	<string name="daily_limit_1">1 daily to do</string>
+	<string name="daily_limit_2">2 daily to dos</string>
+	<string name="daily_limit_3">3 daily to dos</string>
+	<string name="daily_limit_5">5 daily to dos</string>
 
-    <string name="daily_limit_1">1 daily to do</string>
-    <string name="daily_limit_2">2 daily to dos</string>
-    <string name="daily_limit_3">3 daily to dos</string>
-    <string name="daily_limit_5">5 daily to dos</string>
+	<!-- notification -->
+	<string name="notification_add_daily_todo_title">Add a todo</string>
+	<string name="notification_add_daily_todo_text">Enter a todo</string>
+	<string name="notification_add_daily_todo_input_text">Type todo</string>
+	<string name="notification_add_daily_todo_action_text">Add</string>
+
+	<string name="notification_complete_daily_todo_title">Complete a todo</string>
+	<string name="notification_complete_daily_todo_action">Complete</string>
+
+	<string name="notification_completed_today_title">Completed</string>
+	<string name="notification_completed_today_text">Awesome you completed your todos</string>
+
+	<string name="notification_satisfied_daily_title">Do more</string>
+	<string name="notification_satisfied_daily_text">Just do more everyday</string>
+	<string name="notification_satisfied_daily_do_more_action">Do more</string>
+	<string name="notification_satisfied_daily_satisfied_action">Satisfied</string>
+
 </resources>

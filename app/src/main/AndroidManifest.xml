@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="de.squiray.dailylist">
+		  package="de.squiray.dailylist">
 
-    <application
-        android:name="de.squiray.dailylist.DailylistApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/dailylist"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/dailylist"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name="de.squiray.dailylist.presentation.ui.activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="de.squiray.dailylist.presentation.ui.activity.DailyTodoActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"/>
+	<application
+			android:name="de.squiray.dailylist.DailyListApp"
+			android:allowBackup="true"
+			android:icon="@mipmap/dailylist"
+			android:label="@string/app_name"
+			android:roundIcon="@mipmap/dailylist"
+			android:supportsRtl="true"
+			android:theme="@style/AppTheme">
+		<activity
+				android:name="de.squiray.dailylist.presentation.ui.activity.SplashActivity"
+				android:screenOrientation="portrait"
+				android:theme="@style/SplashTheme">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity
+				android:name="de.squiray.dailylist.presentation.ui.activity.DailyTodoActivity"
+				android:screenOrientation="portrait"
+				android:windowSoftInputMode="adjustNothing"/>
 
-        <activity
-            android:name="de.squiray.dailylist.presentation.ui.activity.SettingsActivity"
-            android:screenOrientation="portrait"/>
+		<activity
+				android:name="de.squiray.dailylist.presentation.ui.activity.SettingsActivity"
+				android:screenOrientation="portrait"/>
 
-        <receiver
-            android:name="de.squiray.dailylist.presentation.service.receiver.DailyTodoLimitResetAlarmReceiver"/>
+		<service android:name=".presentation.service.DailyListService"/>
+		<service android:name=".presentation.service.AddDailyTodoService"/>
+		<service android:name=".presentation.service.CompleteDailyTodoService"/>
 
-        <receiver
-            android:name=".presentation.service.receiver.DailyStreakResetAlarmReceiver"/>
-    </application>
+		<receiver
+				android:name="de.squiray.dailylist.presentation.service.receiver.DailyTodoLimitResetAlarmReceiver"/>
+
+		<receiver
+				android:name=".presentation.service.receiver.DailyStreakResetAlarmReceiver"/>
+	</application>
 
 </manifest>

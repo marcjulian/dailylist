@@ -42,6 +42,11 @@ class DailyTodoActivity : BaseActivity(), DailyTodoView, AddOrChangeTodoBottomDi
         sharedPreferencesHelper.addDailyStreakListener(onDailyStrikeCountChanged)
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        dailyTodoPresenter.onWindowFocusChanged(hasFocus, dailyTodoFragment().todoType)
+    }
+
     override fun getMenuResource(): Int {
         return R.menu.menu_daily_todo
     }

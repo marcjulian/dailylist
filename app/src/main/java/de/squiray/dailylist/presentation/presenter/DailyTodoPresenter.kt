@@ -20,28 +20,24 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
             private val sharedPreferencesHelper: SharedPreferencesHelper)
     : Presenter<DailyTodoView>() {
 
+    fun onWindowFocusChanged(hasFocus: Boolean, todoType: TodoType) {
+        if (hasFocus) {
+            onLoadContent(todoType)
+        }
+    }
+
     fun onAddTodoClicked(type: TodoType) {
-        if (type == TodoType.DAILY_TO_DO && hasDailyLimitReached()) {
+        if (type == TodoType.DAILY_TO_DO && sharedPreferencesHelper.hasDailyTodoLimitExceeded()) {
             view.showMessage(R.string.screen_daily_todo_limit_reached)
             return
         }
         view.showAddTodoDialog(type)
     }
 
-    private fun hasDailyLimitReached(): Boolean {
-        return sharedPreferencesHelper.getAddedDailyTodoNumber() >= sharedPreferencesHelper.getDailyTodoLimit().limit
-    }
-
     fun onAddNewTodo(todo: String, type: TodoType) {
         addTodoUseCase.todo = todo
         addTodoUseCase.type = type
         addTodoUseCase.run(object : NoOpResultHandler<Todo>() {
-
-            override fun onFinished() {
-                if (type == TodoType.DAILY_TO_DO) {
-                    sharedPreferencesHelper.addDailyTodo()
-                }
-            }
 
             override fun onSuccess(todo: Todo) {
                 view.addOrUpdate(todo)
@@ -62,15 +58,7 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         completeTodoUseCase.todo = todo
         completeTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(completedTodo: Todo) {
-                onDailyTodo(completedTodo)
                 view.deleteTodo(completedTodo)
-            }
-
-            fun onDailyTodo(completedTodo: Todo) {
-                if (completedTodo.todoType == TodoType.DAILY_TO_DO
-                        && !sharedPreferencesHelper.isDailyStreakIncrementedToday()) {
-                    sharedPreferencesHelper.updateDailyStreakCount()
-                }
             }
         })
     }
@@ -79,14 +67,7 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
         deleteTodoUseCase.todo = todo
         deleteTodoUseCase.run(object : NoOpResultHandler<Todo>() {
             override fun onSuccess(todo: Todo) {
-                onDailyTodo(todo)
                 view.deleteTodo(todo)
-            }
-
-            fun onDailyTodo(todo: Todo) {
-                if (todo.todoType == TodoType.DAILY_TO_DO) {
-                    sharedPreferencesHelper.removeDailyTodo()
-                }
             }
         })
     }
@@ -104,6 +85,5 @@ constructor(private val getTodosUseCase: GetTodosUseCase,
     fun onTodoClicked(todo: Todo) {
         view.showChangeTodoDialog(todo)
     }
-
 }
 
