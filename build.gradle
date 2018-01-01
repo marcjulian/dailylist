@@ -30,7 +30,7 @@ allprojects {
     ext {
         androidApplicationId = 'de.squiray.dailylist'
         androidVersionCode = getVersionCode()
-        androidVersionName = '0.7.0'
+        androidVersionName = '0.8.0'
     }
     repositories {
 		google()
