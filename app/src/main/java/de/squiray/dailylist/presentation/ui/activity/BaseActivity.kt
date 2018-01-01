@@ -121,7 +121,6 @@ abstract class BaseActivity : DaggerAppCompatActivity(), View {
 
     override fun activity(): android.app.Activity = this
 
-
     override fun showMessage(message: String, vararg args: Any) = toast(format(message, args))
 
     override fun showDialog(dialog: DialogFragment) {
