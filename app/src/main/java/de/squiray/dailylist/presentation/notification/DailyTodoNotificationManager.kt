@@ -1,20 +1,16 @@
 package de.squiray.dailylist.presentation.notification
 
-import android.content.Context
 import android.support.v4.app.NotificationManagerCompat
 import de.squiray.dailylist.domain.entity.Todo
 import javax.inject.Inject
 
 class DailyTodoNotificationManager @Inject constructor(
-        context: Context,
+        private val notificationManager: NotificationManagerCompat,
         private val addDailyTodoNotification: AddDailyTodoNotification,
         private val completeDailyTodoNotification: CompleteDailyTodoNotification,
         private val satisfiedDailyTodoNotification: SatisfiedDailyTodoNotification,
         private val completedTodayNotification: CompletedTodayNotification
 ) {
-
-    private val notificationManager: NotificationManagerCompat
-            = NotificationManagerCompat.from(context)
 
     fun notifyAddDailyTodoNotification() {
         notificationManager.notify(DailyTodoNotification.TAG,

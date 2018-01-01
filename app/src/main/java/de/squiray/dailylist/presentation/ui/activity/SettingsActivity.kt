@@ -14,12 +14,13 @@ class SettingsActivity : BaseActivity(), SettingsView {
     lateinit var presenter: SettingsPresenter
 
     override fun setupView() {
-       setupToolbar()
+        setupToolbar()
     }
 
     private fun setupToolbar() {
         toolbar.setTitle(R.string.screen_settings_title)
         setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 }

@@ -4,13 +4,8 @@ import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasFragmentInjector
 import dagger.android.support.DaggerAppCompatActivity
 import de.squiray.dailylist.R
 import de.squiray.dailylist.presentation.presenter.Presenter
@@ -18,7 +13,6 @@ import de.squiray.dailylist.presentation.ui.view.View
 import de.squiray.dailylist.util.annotation.Activity
 import de.squiray.dailylist.util.extension.toast
 import java.lang.String.format
-import javax.inject.Inject
 
 
 abstract class BaseActivity : DaggerAppCompatActivity(), View {
@@ -76,7 +70,7 @@ abstract class BaseActivity : DaggerAppCompatActivity(), View {
     }
 
 
-   override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuResource = getMenuResource()
         if (menuResource != NO_MENU) {
             menuInflater.inflate(menuResource, menu)
@@ -100,6 +94,10 @@ abstract class BaseActivity : DaggerAppCompatActivity(), View {
     }
 
     open fun onMenuItemSelected(itemId: Int): Boolean {
+        if (itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
         return false
     }
 
@@ -122,7 +120,6 @@ abstract class BaseActivity : DaggerAppCompatActivity(), View {
 
 
     override fun activity(): android.app.Activity = this
-
 
     override fun showMessage(message: String, vararg args: Any) = toast(format(message, args))
 

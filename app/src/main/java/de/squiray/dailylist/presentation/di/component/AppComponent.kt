@@ -7,16 +7,14 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import dagger.android.support.DaggerApplication
 import de.squiray.dailylist.data.repository.RepositoryModule
-import de.squiray.dailylist.presentation.di.module.ActivityModule
-import de.squiray.dailylist.presentation.di.module.AppModule
-import de.squiray.dailylist.presentation.di.module.FragmentModule
-import de.squiray.dailylist.presentation.di.module.ThreadModule
+import de.squiray.dailylist.presentation.di.module.*
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
     (AndroidSupportInjectionModule::class),
     (AppModule::class),
+    (ProviderModule::class),
     (ThreadModule::class),
     (RepositoryModule::class),
     (ActivityModule::class),
